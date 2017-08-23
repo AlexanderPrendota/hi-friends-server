@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Chat</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/chat.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet'/>
+</head>
+
+<body>
+<div class="center">
+    <h1 class="text">HiFriends Chat</h1>
+</div>
+<div class="wrapper">
+    <article class="main">
+        <div class="_title">
+            <div class="container">
+                <h1 id="ownerTag"
+                    data-th-attr="data-owner-id=${chatOwner.id}, data-owner-name=${chatOwner.name},data-owner-active=${chatOwner.active},data-owner-email=${chatOwner.email},data-owner-avatar=${chatOwner.imagePath}">
+                    You are logged as <span th:text="${chatOwner.name}">Chat owner</span>
+                </h1>
+            </div>
+        </div>
+        <div class="container">
+            <fieldset id="chat" class="chat">
+                <div id="messages" class="messages"></div>
+            </fieldset>
+        </div>
+
+        <div class="message">
+            <div>
+                <label class="message-input"><input id="message" type="text" placeholder="Сообщение...."/></label>
+                <button id="send">Отправить</button>
+            </div>
+        </div>
+    </article>
+    <aside class="aside">
+        <div class="container">
+            <h2>Диалоги</h2>
+        </div>
+        <ul id="users" class="_users"></ul>
+    </aside>
+</div>
+<script src="js/userService.js"/>
+</body>
+</html>
