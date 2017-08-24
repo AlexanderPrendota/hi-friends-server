@@ -1,6 +1,8 @@
 package com.hifriends.controllers;
 
 import com.hifriends.model.User;
+import com.hifriends.service.api.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,15 +18,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping
 public class LoginController {
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(path = "chat", method = RequestMethod.POST)
-    public String login(@RequestParam(value = "name") final String name,
-                        @RequestParam(value = "email") final String email,
-                        @RequestParam(value = "avatar") final String avatar,
+    public String login(@RequestParam(value = "name") String name,
+                        @RequestParam(value = "email") String email,
+                        @RequestParam(value = "avatar") String avatar,
                         Model model) {
-        System.out.println(name);
-        System.out.println(email);
-        System.out.println(avatar);
-        User chatOwner = new User(1,email,name,avatar,false);
+        User chatOwner = userService.getUserByEmail(email);
+        if (chatOwner == null){
+            chatOwner = new User();
+            chatOwner.setEmail(email);
+            chatOwner.setName(name);
+            chatOwner.setImagePath(avatar);
+            chatOwner.setActive(true);
+        } else {
+            chatOwner.setActive(true);
+        }
+        userService.addUser(chatOwner);
         model.addAttribute("chatOwner", chatOwner);
         return "chat";
     }
