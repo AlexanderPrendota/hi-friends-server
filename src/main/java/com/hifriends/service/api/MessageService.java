@@ -2,7 +2,7 @@ package com.hifriends.service.api;
 
 import com.hifriends.model.Chat;
 import com.hifriends.model.Message;
-import com.hifriends.model.MessageDTO;
+import com.hifriends.model.dto.MessageDTO;
 import com.hifriends.model.User;
 
 import java.util.List;

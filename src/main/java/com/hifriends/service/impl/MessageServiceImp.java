@@ -2,7 +2,7 @@ package com.hifriends.service.impl;
 
 import com.hifriends.model.Chat;
 import com.hifriends.model.Message;
-import com.hifriends.model.MessageDTO;
+import com.hifriends.model.dto.MessageDTO;
 import com.hifriends.model.User;
 import com.hifriends.model.UserChat;
 import com.hifriends.repository.ChatRepository;

@@ -41,11 +41,7 @@ public class UserController {
      */
     @RequestMapping(value = "/logout/{email:.*}", method = RequestMethod.POST)
     public ResponseEntity<?> updateUserStatus(@PathVariable String email){
-        User user = userService.getUserByEmail(email);
-        if(user != null){
-            user.setActive(false);
-            userService.addUser(user);
-        }
+        userService.updateUserStatus(email);
         return ResponseEntity.ok("User was updated");
     }
 }

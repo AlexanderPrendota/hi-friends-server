@@ -10,18 +10,6 @@ table,tbody, tfoot, thead, tr, th, td{
     vertical-align: baseline;
 }
 body {
-    line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-
-body {
     min-width: 320px;
     height: 100%;
 
@@ -219,4 +207,14 @@ button {
     font-family: 'Passion One', cursive;
     text-align: center;
     margin: 0 auto;
+}
+.messageIcon{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+
+.messageTime{
+    font-size: 14px;
 }

@@ -1,4 +1,4 @@
-package com.hifriends.model;
+package com.hifriends.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

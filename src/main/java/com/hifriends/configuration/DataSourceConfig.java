@@ -1,6 +1,7 @@
 package com.hifriends.configuration;
 
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +24,15 @@ public class DataSourceConfig {
         return DataSourceBuilder
                 .create()
                 .build();
+    }
+
+    /**
+     * Bean for DTO to Entity mapper
+     * @return
+     */
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+</head>
+
+<body>
+<div th:fragment="messagesList" th:unless="${#lists.isEmpty(messages)}" class="results-block">
+    <table id="msgTable" data-th-attr="data-chat-id=${chatId}">
+        <div class="messageItem" th:each="message : ${messages}">
+            <div class="messageUser">
+                <i class="usersListIcon"><img style="width: 50px; height: 50px; border-radius: 50%;" class="messageIcon"
+                                              th:src="${message.sender.imagePath}"/></i>
+                <div class="userName" data-th-attr="data-chat-id=${chatId}" th:text="${message.sender.name} ">User Name
+                </div>
+            </div>
+            <div class="messageText"
+                 th:text="${message.text  + ' ' + #dates.format(message.timeStamp, 'dd-MM-yyyy HH:mm')}">
+                message text...
+            </div>
+        </div>
+    </table>
+</div>
+</body>
+</html>
