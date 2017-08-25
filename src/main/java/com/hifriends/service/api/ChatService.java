@@ -7,10 +7,6 @@ import com.hifriends.model.Chat;
  */
 public interface ChatService {
 
-    Chat findChatById(Long id);
-
-    void save(Chat chat);
-
-    void deleteChat(Chat chat);
+    Chat findChatMessageBy2users(long ownerId, long userId);
 
 }

@@ -13,12 +13,7 @@ public interface UserChatService {
 
     List<UserChat> findChatsByUser(User user);
 
-    Boolean checkUserInChat(Long idUser, Long idChat);
-
     List<UserChat> findByChat(Chat chat);
 
-    List<UserChat> findChatsUserNot(User user);
-
-    UserChat save(UserChat userChat);
-
+    void createChats(Chat chat, long owner, long recipient);
 }

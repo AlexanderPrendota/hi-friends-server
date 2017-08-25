@@ -1,4 +1,4 @@
-var currenActiveUser = 0;
+var currentActiveUser = 0;
 
 jQuery(function ($) {
 
@@ -6,7 +6,6 @@ jQuery(function ($) {
 
     var chatPerson = null;
     var name = null;
-    var avatar = null;
     var lastChatPerson = null;
     var currentChatId;
     var isDownloading = false;
@@ -18,6 +17,7 @@ jQuery(function ($) {
         active: $("#ownerTag").attr('data-owner-active')
     };
 
+    // logout user after closing tab with chat
     $(window).bind("beforeunload", function () {
         $.ajax({
             type: 'POST',
@@ -41,8 +41,8 @@ jQuery(function ($) {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                if (response.length !== currenActiveUser) {
-                    currenActiveUser = response.length;
+                if (response.length !== currentActiveUser) {
+                    currentActiveUser = response.length;
                     drawActiveUsers(response);
                 }
             }
@@ -80,52 +80,52 @@ jQuery(function ($) {
             console.log("ЖМЯК");
             loadChatMessages()
         });
-
-        function loadChatMessages() {
-            downloadMessages();
-        }
-
-        function downloadMessages() {
-            console.log("Hello from message!")
-            if (!isDownloading) {
-                isDownloading = true;
-                $("#messages").load("messages", {
-                    ownerId: chatOwner.id,
-                    userId: chatPerson
-                });
-                $('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")}, 500);
-            }
-            isDownloading = false;
-        }
-
-        $('#send').click(function() {
-            currentChatId = $("#msgTable").attr("data-chat-id");
-            var msgText = $('#message').val();
-            console.log(currentChatId);
-
-            var msgData = JSON.stringify({
-                recipientId: chatPerson,
-                senderId: chatOwner.id,
-                text: msgText,
-                timeStamp: new Date(),
-                chatId: 1
-            });
-            if (msgText.length > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: "api/message/save",
-                    dataType: "json",
-                    contentType: "application/json",
-                    data: msgData,
-                    success: function (response) {
-                        console.log(response);
-                        downloadMessages();
-                        $("#message").val("");
-                    }
-                });
-            }
-        });
     }
-});
 
+    function loadChatMessages() {
+        // TODO: polling
+        downloadMessages();
+    }
+
+    function downloadMessages() {
+        console.log("Hello from message!");
+        if (!isDownloading) {
+            isDownloading = true;
+            $("#messages").load("messages", {
+                ownerId: chatOwner.id,
+                userId: chatPerson
+            });
+            $('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")}, 500);
+        }
+        isDownloading = false;
+    }
+
+    $('#send').click(function() {
+        currentChatId = $("#msgTable").attr("data-chat-id");
+        var msgText = $('#message').val();
+        console.log(currentChatId);
+
+        var msgData = JSON.stringify({
+            recipientId: chatPerson,
+            senderId: chatOwner.id,
+            text: msgText,
+            timeStamp: new Date(),
+            chatId: 1
+        });
+        if (msgText.length > 0) {
+            $.ajax({
+                type: "POST",
+                url: "api/message/save",
+                dataType: "json",
+                contentType: "application/json",
+                data: msgData,
+                success: function (response) {
+                    console.log(response);
+                    downloadMessages();
+                    $("#message").val("");
+                }
+            });
+        }
+    });
+});
 

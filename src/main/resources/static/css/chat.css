@@ -1,7 +1,7 @@
 html, body, div, span,
 h1, h2, h3, h4, h5, h6, p, img,
 b, u, i , ul, li, form, label,
-table,tbody, tfoot, thead, tr, th, td{
+table,tbody, tfoot, fieldset, thead, tr, th, td{
     margin: 0;
     padding: 0;
     border: 0;

@@ -11,12 +11,12 @@
         <div class="messageItem" th:each="message : ${messages}">
             <div class="messageUser">
                 <i class="usersListIcon"><img style="width: 50px; height: 50px; border-radius: 50%;" class="messageIcon"
-                                              th:src="${message.sender.imagePath}"/></i>
-                <div class="userName" data-th-attr="data-chat-id=${chatId}" th:text="${message.sender.name} ">User Name
+                                              th:src="${message.senderImagePath}"/></i>
+                <div class="userName" th:text="${message.senderName}">User Name
                 </div>
             </div>
             <div class="messageText"
-                 th:text="${message.text  + ' ' + #dates.format(message.timeStamp, 'dd-MM-yyyy HH:mm')}">
+                 th:text="${message.text + ' ' + #dates.format(message.timeStamp, 'dd-MM-yyyy HH:mm')}">
                 message text...
             </div>
         </div>

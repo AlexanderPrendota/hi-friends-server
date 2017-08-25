@@ -23,24 +23,7 @@ public class UserChatServiceImp implements UserChatService {
     private UserChatRepository userChatRepository;
 
     @Autowired
-    private ChatRepository chatRepository;
-
-    @Autowired
     private UserRepository userRepository;
-
-    /**
-     * Check user in chat
-     * @param idUser user entity id
-     * @param idChat chat id
-     * @return true/false
-     */
-    @Override
-    public Boolean checkUserInChat(Long idUser, Long idChat){
-        User user = userRepository.findOne(idUser);
-        Chat chat = chatRepository.findOne(idChat);
-        UserChat userChat = userChatRepository.findByChatAndUser(chat, user);
-        return (userChat != null);
-    }
 
     /**
      * get list of userchat entity by chat
@@ -63,28 +46,22 @@ public class UserChatServiceImp implements UserChatService {
     }
 
     /**
-     * get list od userchat entity by not user entity
-     * @param user entity
-     * @return list of userchat entity
+     * Create user chat between two users
+     * @param chat
+     * @param ownerId
+     * @param recipientId
      */
     @Override
-    public List<UserChat> findChatsUserNot(User user){
-        List<UserChat> userChats = userChatRepository.findByUser(user);
-        List<UserChat> filteredChats = new ArrayList<>();
-        for (UserChat userChat : userChats) {
-            UserChat filteredChat = userChatRepository.findByChatAndUserNot(userChat.getChat(), user);
-            filteredChats.add(filteredChat);
-        }
-        return filteredChats;
-    }
-
-    /**
-     * save the userchat entity
-     * @param userChat
-     * @return entity userchat
-     */
-    @Override
-    public UserChat save(UserChat userChat) {
-        return userChatRepository.save(userChat);
+    public void createChats(Chat chat, long ownerId, long recipientId) {
+        User recipient = userRepository.findOne(recipientId);
+        User owner = userRepository.findOne(ownerId);
+        UserChat firstChatForOwner = new UserChat();
+        UserChat secondChatForUser = new UserChat();
+        firstChatForOwner.setChat(chat);
+        firstChatForOwner.setUser(owner);
+        secondChatForUser.setUser(recipient);
+        secondChatForUser.setChat(chat);
+        userChatRepository.save(firstChatForOwner);
+        userChatRepository.save(secondChatForUser);
     }
 }

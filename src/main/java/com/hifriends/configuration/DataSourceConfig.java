@@ -27,7 +27,7 @@ public class DataSourceConfig {
     }
 
     /**
-     * Bean for DTO to Entity mapper
+     * Bean for DTO to Entity mapper and back
      * @return
      */
     @Bean

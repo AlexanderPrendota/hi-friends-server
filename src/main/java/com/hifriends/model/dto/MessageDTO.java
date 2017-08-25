@@ -13,9 +13,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MessageDTO {
-    private long recipientId;
-    private long senderId;
     private String text;
+    private String senderName;
+    private String senderImagePath;
+    private long senderId;
     private Date timeStamp;
-    private Long chatId;
 }
