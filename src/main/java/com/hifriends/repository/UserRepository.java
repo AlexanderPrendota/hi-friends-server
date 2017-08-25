@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface UserRepository extends CrudRepository<User, Long> {
     User findByEmail(String email);
-    List<User> findByActiveIsTrue();
+    List<User> findByActiveIsTrueAndIdNot(long id);
 }

@@ -2,20 +2,19 @@ package com.hifriends.service.impl;
 
 import com.hifriends.model.Chat;
 import com.hifriends.model.Message;
-import com.hifriends.model.dto.MessageDTO;
 import com.hifriends.model.User;
-import com.hifriends.model.UserChat;
+import com.hifriends.model.dto.MessageDto;
+import com.hifriends.model.dto.MessagePostDto;
 import com.hifriends.repository.ChatRepository;
 import com.hifriends.repository.MessageRepository;
-import com.hifriends.repository.UserChatRepository;
 import com.hifriends.repository.UserRepository;
 import com.hifriends.service.api.MessageService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author by aleksandrprendota on 24.08.17.
@@ -33,56 +32,26 @@ public class MessageServiceImp implements MessageService {
     private UserRepository userRepository;
 
     @Autowired
-    private UserChatRepository userChatRepository;
-
-    @Autowired
     private ModelMapper modelMapper;
 
     /**
      * Post message entity to db
-     * of creating chat with the first message
-     * @param messageDTO
+     * @param messagePostDto
      * @return new Message entity
      */
     @Override
-    public Message postMessage(MessageDTO messageDTO) {
-//        User sender = userRepository.findOne(messageDTO.getSenderId());
-//        User recipient = userRepository.findOne(messageDTO.getRecipientId());
-//        Message message = new Message();
-//        message.setText(messageDTO.getText());
-//        message.setTimeStamp(messageDTO.getTimeStamp());
-//        message.setSender(sender);
-//        UserChat filteredChat = null;
-//        if(messageDTO.getChatId() != null){
-//            Chat chat = chatRepository.findOne(messageDTO.getChatId());
-//            if(chat != null){
-//                message.setChat(chat);
-//                return messageRepository.save(message);
-//            }
-//        }
-//        List<UserChat> userChats = userChatRepository.findByUser(sender);
-//        for (UserChat userChat : userChats) {
-//            filteredChat = userChatRepository.findByChatAndUser(userChat.getChat(), recipient);
-//            if(filteredChat != null) {
-//                break;
-//            }
-//        }
-//        if(filteredChat != null){
-//            message.setChat(filteredChat.getChat());
-//        } else {
-//            Chat chat = chatRepository.save(new Chat());
-//            UserChat first = new UserChat();
-//            first.setChat(chat);
-//            first.setUser(sender);
-//            userChatRepository.save(first);
-//            UserChat second = new UserChat();
-//            second.setUser(recipient);
-//            second.setChat(chat);
-//            userChatRepository.save(second);
-//            message.setChat(chat);
-//        }
-//        return messageRepository.save(message);
-        return null;
+    public void postMessage(MessagePostDto messagePostDto) {
+        // TODO: throw exception
+        User sender = userRepository.findOne(messagePostDto.getSenderId());
+        Chat chat = chatRepository.findOne(messagePostDto.getChatId());
+        if (sender != null && chat != null){
+            Message message = Message.builder()
+                    .chat(chat)
+                    .sender(sender)
+                    .text(messagePostDto.getText())
+                    .timeStamp(messagePostDto.getTimeStamp()).build();
+            messageRepository.save(message);
+        }
     }
 
     /**
@@ -91,18 +60,14 @@ public class MessageServiceImp implements MessageService {
      * @return
      */
     @Override
-    public List<MessageDTO> findByChat(Chat id) {
-        List<MessageDTO> messageDTOS = new ArrayList<>();
-        List<Message> messages = messageRepository.findByChat(id);
-        if (messages != null){
-            for (Message message : messages) {
-                messageDTOS.add(convertToDto(message));
-            }
-        }
-        return messageDTOS;
+    public List<MessageDto> findByChat(Chat id) {
+        return messageRepository.findByChat(id)
+                .stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
     }
 
-    private MessageDTO convertToDto(Message message){
-        return modelMapper.map(message, MessageDTO.class);
+    private MessageDto convertToDto(Message message){
+        return modelMapper.map(message, MessageDto.class);
     }
 }

@@ -9,4 +9,6 @@ public interface ChatService {
 
     Chat findChatMessageBy2users(long ownerId, long userId);
 
+    void createChats(Chat chat, long owner, long recipient);
+
 }

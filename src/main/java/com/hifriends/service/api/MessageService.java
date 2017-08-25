@@ -2,7 +2,8 @@ package com.hifriends.service.api;
 
 import com.hifriends.model.Chat;
 import com.hifriends.model.Message;
-import com.hifriends.model.dto.MessageDTO;
+import com.hifriends.model.dto.MessageDto;
+import com.hifriends.model.dto.MessagePostDto;
 
 import java.util.List;
 
@@ -11,8 +12,8 @@ import java.util.List;
  */
 public interface MessageService {
 
-    Message postMessage(MessageDTO messageDTO);
+    void postMessage(MessagePostDto messagePostDto);
 
-    List<MessageDTO> findByChat(Chat id);
+    List<MessageDto> findByChat(Chat id);
 
 }

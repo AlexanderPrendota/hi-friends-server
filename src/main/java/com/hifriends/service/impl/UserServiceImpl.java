@@ -1,14 +1,13 @@
 package com.hifriends.service.impl;
 
 import com.hifriends.model.User;
-import com.hifriends.model.dto.UserDTO;
+import com.hifriends.model.dto.UserDto;
 import com.hifriends.repository.UserRepository;
 import com.hifriends.service.api.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,45 +25,24 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ModelMapper modelMapper;
 
-
-    /**
-     * Get list of all user from db
-     * @return list of users
-     */
-    @Override
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        userRepository.findAll().forEach(users::add);
-        return users;
-    }
-
-    /**
-     * Get user by email
-     * @param email
-     * @return user entity
-     */
-    @Override
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-
-
     /**
      * Get users with active status = true
+     *
      * @return list of user with true activity
      */
     @Override
-    public List<User> getAllActiveUsers() {
-        return userRepository.findByActiveIsTrue();
+    public List<User> getAllActiveUsers(long id) {
+        //TODO Throw exceptions
+        return userRepository.findByActiveIsTrueAndIdNot(id);
     }
 
     /**
      * Update user status to false
      */
     @Override
-    public void updateUserStatus(String userEmail) {
-        User user = userRepository.findByEmail(userEmail);
-        if(user != null){
+    public void updateUserStatus(long id) {
+        User user = userRepository.findOne(id);
+        if (user != null) {
             user.setActive(false);
             userRepository.save(user);
         }
@@ -72,20 +50,17 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Registratite user in systems and set online status
+     *
      * @param name
      * @param email
      * @param avatar
      * @return
      */
     @Override
-    public UserDTO registrateUser(String name, String email, String avatar) {
+    public UserDto registrateUser(String name, String email, String avatar) {
         User user = userRepository.findByEmail(email);
-        if (user == null){
-            user = new User();
-            user.setEmail(email);
-            user.setName(name);
-            user.setImagePath(avatar);
-            user.setActive(true);
+        if (user == null) {
+            user = User.builder().email(email).imagePath(avatar).name(name).active(true).build();
         } else {
             user.setActive(true);
         }
@@ -93,9 +68,8 @@ public class UserServiceImpl implements UserService {
         return convertToDto(user);
     }
 
-
-    private UserDTO convertToDto(User user){
-        return modelMapper.map(user, UserDTO.class);
+    private UserDto convertToDto(User user) {
+        return modelMapper.map(user, UserDto.class);
     }
 
 }

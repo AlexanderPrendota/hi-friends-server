@@ -12,5 +12,4 @@ import java.util.List;
  */
 public interface MessageRepository extends CrudRepository<Message, Long>{
     List<Message> findByChat(Chat chat);
-    List<Message> findBySender(User user);
 }

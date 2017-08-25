@@ -6,18 +6,17 @@
 </head>
 
 <body>
-<div th:fragment="messagesList" th:unless="${#lists.isEmpty(messages)}" class="results-block">
+<div th:fragment="messagesList" class="results-block">
     <table id="msgTable" data-th-attr="data-chat-id=${chatId}">
         <div class="messageItem" th:each="message : ${messages}">
             <div class="messageUser">
                 <i class="usersListIcon"><img style="width: 50px; height: 50px; border-radius: 50%;" class="messageIcon"
                                               th:src="${message.senderImagePath}"/></i>
-                <div class="userName" th:text="${message.senderName}">User Name
+                <div class="userName" th:text="${message.senderName}">
                 </div>
             </div>
             <div class="messageText"
                  th:text="${message.text + ' ' + #dates.format(message.timeStamp, 'dd-MM-yyyy HH:mm')}">
-                message text...
             </div>
         </div>
     </table>

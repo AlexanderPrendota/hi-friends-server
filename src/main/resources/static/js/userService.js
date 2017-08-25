@@ -1,8 +1,7 @@
 var currentActiveUser = 0;
+var currentMessage = 0;
 
 jQuery(function ($) {
-
-    getActiveUsers();
 
     var chatPerson = null;
     var name = null;
@@ -22,10 +21,12 @@ jQuery(function ($) {
         $.ajax({
             type: 'POST',
             async: false,
-            url: 'api/user/logout/' + chatOwner.email,
+            url: 'api/user/logout/' + chatOwner.id,
             contentType: "application/json"
         });
     });
+
+    getActiveUsers();
 
     function getActiveUsers() {
         getUsers();
@@ -37,7 +38,7 @@ jQuery(function ($) {
     function getUsers() {
         $.ajax({
             type: "GET",
-            url: '/api/user/active',
+            url: '/api/user/active/' + chatOwner.id,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -77,18 +78,24 @@ jQuery(function ($) {
         $('#users span').on("click", function (event) {
             chatPerson = $(event.target).attr('id');
             $('#chat').show();
-            console.log("ЖМЯК");
-            loadChatMessages()
+            downloadMessages();
         });
     }
 
-    function loadChatMessages() {
-        // TODO: polling
-        downloadMessages();
-    }
+    var loadMessage = function() {
+        setInterval(function () {
+            if (chatPerson){
+                console.log("Monitoring...");
+                downloadMessages();
+            }
+        }, 5000);
+    };
+
+    loadMessage();
 
     function downloadMessages() {
-        console.log("Hello from message!");
+        $('#message').empty();
+        console.log("Download for " + chatPerson);
         if (!isDownloading) {
             isDownloading = true;
             $("#messages").load("messages", {
@@ -100,28 +107,30 @@ jQuery(function ($) {
         isDownloading = false;
     }
 
+    $('#message').keypress(function(e) {
+        if (e.which === 13) {
+            $('#send').click();
+        }
+    });
+
     $('#send').click(function() {
         currentChatId = $("#msgTable").attr("data-chat-id");
         var msgText = $('#message').val();
-        console.log(currentChatId);
-
         var msgData = JSON.stringify({
-            recipientId: chatPerson,
             senderId: chatOwner.id,
             text: msgText,
             timeStamp: new Date(),
-            chatId: 1
+            chatId: currentChatId
         });
         if (msgText.length > 0) {
             $.ajax({
                 type: "POST",
                 url: "api/message/save",
-                dataType: "json",
                 contentType: "application/json",
                 data: msgData,
                 success: function (response) {
-                    console.log(response);
                     downloadMessages();
+                    console.log("Отправлено успешно");
                     $("#message").val("");
                 }
             });

@@ -1,6 +1,7 @@
 package com.hifriends.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,11 +10,13 @@ import javax.persistence.*;
 /**
  * @author by aleksandrprendota on 22.08.17.
  */
-@Entity
+
 @Data
-@Table(name = "USERS")
+@Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "USERS")
 public class User {
 
     @Id

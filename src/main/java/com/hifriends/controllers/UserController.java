@@ -3,7 +3,6 @@ package com.hifriends.controllers;
 import com.hifriends.model.User;
 import com.hifriends.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,25 +22,23 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     /**
      * Get list of active user in chat
      * @return
      */
-    @RequestMapping(value = "/active", method = RequestMethod.GET)
-    public List<User> getActiveUsers(){
-        return userService.getAllActiveUsers();
+    @RequestMapping(value = "/active/{id}", method = RequestMethod.GET)
+    public List<User> getActiveUsers(@PathVariable long id){
+        return userService.getAllActiveUsers(id);
     }
 
     /**
      * Logout user after he left the chat.
      * Set his active to false
-     * @param email
-     * @return 200 status
+     * @param id
      */
-    @RequestMapping(value = "/logout/{email:.*}", method = RequestMethod.POST)
-    public ResponseEntity<?> updateUserStatus(@PathVariable String email){
-        userService.updateUserStatus(email);
-        return ResponseEntity.ok("User was updated");
+    // TODO: send id
+    @RequestMapping(value = "/logout/{id}", method = RequestMethod.POST)
+    public void updateUserStatus(@PathVariable long id){
+        userService.updateUserStatus(id);
     }
 }

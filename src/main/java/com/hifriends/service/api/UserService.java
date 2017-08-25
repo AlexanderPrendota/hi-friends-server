@@ -1,7 +1,7 @@
 package com.hifriends.service.api;
 
 import com.hifriends.model.User;
-import com.hifriends.model.dto.UserDTO;
+import com.hifriends.model.dto.UserDto;
 
 import java.util.List;
 
@@ -10,14 +10,9 @@ import java.util.List;
  */
 public interface UserService {
 
+    List<User> getAllActiveUsers(long id);
 
-    List<User> getAllUsers();
+    void updateUserStatus(long id);
 
-    User getUserByEmail(String email);
-
-    List<User> getAllActiveUsers();
-
-    void updateUserStatus(String userEmail);
-
-    UserDTO registrateUser(String name, String email, String avatar);
+    UserDto registrateUser(String name, String email, String avatar);
 }

@@ -1,6 +1,6 @@
 package com.hifriends.controllers;
 
-import com.hifriends.model.dto.UserDTO;
+import com.hifriends.model.dto.UserDto;
 import com.hifriends.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ public class LoginController {
                         @RequestParam(value = "email") String email,
                         @RequestParam(value = "avatar") String avatar,
                         Model model) {
-        UserDTO chatOwner = userService.registrateUser(name, email, avatar);
+        UserDto chatOwner = userService.registrateUser(name, email, avatar);
         model.addAttribute("chatOwner", chatOwner);
         return "chat";
     }
