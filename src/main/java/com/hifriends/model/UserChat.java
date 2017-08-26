@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 /**
- * @author  by aleksandrprendota on 22.08.17.
+ * @author by aleksandrprendota on 22.08.17.
  */
 @Data
 @NoArgsConstructor
@@ -15,7 +15,7 @@ public class UserChat {
 
     @Id
     @GeneratedValue
-    @Column(name = "USER_CHAT_ID", nullable =  false)
+    @Column(name = "USER_CHAT_ID", nullable = false)
     private long id;
 
     @ManyToOne

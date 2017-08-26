@@ -1,7 +1,6 @@
 package com.hifriends.service.api;
 
 import com.hifriends.model.Chat;
-import com.hifriends.model.Message;
 import com.hifriends.model.dto.MessageDto;
 import com.hifriends.model.dto.MessagePostDto;
 

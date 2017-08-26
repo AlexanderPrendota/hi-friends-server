@@ -15,7 +15,7 @@ import java.util.Date;
 @Data
 @Builder
 @AllArgsConstructor
-@Entity(name="MESSAGES")
+@Entity(name = "MESSAGES")
 @NoArgsConstructor
 public class Message {
 

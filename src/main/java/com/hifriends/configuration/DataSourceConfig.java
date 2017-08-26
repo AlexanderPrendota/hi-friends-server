@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 /**
  * database configuration
+ *
  * @author aleksandrprendota on 22.08.17.
  */
 @Configuration
@@ -28,6 +29,7 @@ public class DataSourceConfig {
 
     /**
      * Bean for DTO to Entity mapper and back
+     *
      * @return
      */
     @Bean

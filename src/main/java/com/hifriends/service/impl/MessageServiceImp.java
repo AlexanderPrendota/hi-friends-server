@@ -36,6 +36,7 @@ public class MessageServiceImp implements MessageService {
 
     /**
      * Post message entity to db
+     *
      * @param messagePostDto
      * @return new Message entity
      */
@@ -44,7 +45,7 @@ public class MessageServiceImp implements MessageService {
         // TODO: throw exception
         User sender = userRepository.findOne(messagePostDto.getSenderId());
         Chat chat = chatRepository.findOne(messagePostDto.getChatId());
-        if (sender != null && chat != null){
+        if (sender != null && chat != null) {
             Message message = Message.builder()
                     .chat(chat)
                     .sender(sender)
@@ -56,6 +57,7 @@ public class MessageServiceImp implements MessageService {
 
     /**
      * Getting list of message by chat entity
+     *
      * @param id chat entity
      * @return
      */
@@ -67,7 +69,7 @@ public class MessageServiceImp implements MessageService {
                 .collect(Collectors.toList());
     }
 
-    private MessageDto convertToDto(Message message){
+    private MessageDto convertToDto(Message message) {
         return modelMapper.map(message, MessageDto.class);
     }
 }

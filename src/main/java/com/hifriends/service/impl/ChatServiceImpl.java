@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author by aleksandrprendota on 25.08.17.
  */
 @Service
-public class ChatServiceImpl implements ChatService{
+public class ChatServiceImpl implements ChatService {
 
     @Autowired
     private ChatRepository chatRepository;
@@ -27,14 +27,15 @@ public class ChatServiceImpl implements ChatService{
 
     /**
      * Get chat by 2 users
-     * @param ownerId id user1
+     *
+     * @param ownerId     id user1
      * @param recipientId id user2
      * @return chat entity
      */
     @Override
     public Chat findChatMessageBy2users(long ownerId, long recipientId) {
         Chat chat = chatRepository.findChatByUsers(ownerId, recipientId);
-        if (chat == null){
+        if (chat == null) {
             chat = new Chat();
             chat = chatRepository.save(chat);
             createChats(chat, ownerId, recipientId);
@@ -44,8 +45,9 @@ public class ChatServiceImpl implements ChatService{
 
     /**
      * Create user chat between two users
-     * @param chat entity
-     * @param ownerId id user entity
+     *
+     * @param chat        entity
+     * @param ownerId     id user entity
      * @param recipientId id user entity
      */
     @Override
@@ -56,7 +58,7 @@ public class ChatServiceImpl implements ChatService{
         saveUserChat(owner, chat);
     }
 
-    private void saveUserChat(User user, Chat chat){
+    private void saveUserChat(User user, Chat chat) {
         UserChat resultChat = new UserChat();
         resultChat.setChat(chat);
         resultChat.setUser(user);

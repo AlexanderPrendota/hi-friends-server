@@ -12,7 +12,8 @@ import java.util.List;
 
 /**
  * Implementation UserService
- * @author  by aleksandrprendota on 22.08.17.
+ *
+ * @author by aleksandrprendota on 22.08.17.
  */
 
 @Service
