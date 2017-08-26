@@ -54,8 +54,10 @@ public class ChatServiceImpl implements ChatService {
     public void createChats(Chat chat, long ownerId, long recipientId) {
         User recipient = userRepository.findOne(recipientId);
         User owner = userRepository.findOne(ownerId);
-        saveUserChat(recipient, chat);
-        saveUserChat(owner, chat);
+        if (recipient != null && owner != null){
+            saveUserChat(recipient, chat);
+            saveUserChat(owner, chat);
+        }
     }
 
     private void saveUserChat(User user, Chat chat) {

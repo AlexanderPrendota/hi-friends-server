@@ -82,9 +82,9 @@ jQuery(function ($) {
         });
     }
 
-    var loadMessage = function() {
+    var loadMessage = function () {
         setInterval(function () {
-            if (chatPerson){
+            if (chatPerson) {
                 console.log("Monitoring...");
                 downloadMessages();
             }
@@ -102,18 +102,20 @@ jQuery(function ($) {
                 ownerId: chatOwner.id,
                 userId: chatPerson
             });
-            $('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")}, 500);
+            $('#messages').animate({
+                scrollTop: $('#messages').prop("scrollHeight")
+            }, 500);
         }
         isDownloading = false;
     }
 
-    $('#message').keypress(function(e) {
+    $('#message').keypress(function (e) {
         if (e.which === 13) {
             $('#send').click();
         }
     });
 
-    $('#send').click(function() {
+    $('#send').click(function () {
         currentChatId = $("#msgTable").attr("data-chat-id");
         var msgText = $('#message').val();
         var msgData = JSON.stringify({
@@ -132,9 +134,12 @@ jQuery(function ($) {
                     downloadMessages();
                     console.log("Отправлено успешно");
                     $("#message").val("");
+                },
+                error: function (error) {
+                    $("#message").val("");
+                    console.log(error.responseText.message);
                 }
             });
         }
     });
 });
-

@@ -17,9 +17,9 @@ function onSignIn(googleUser) {
 }
 
 function onLoad() {
-    gapi.load('auth2,signin2', function() {
+    gapi.load('auth2,signin2', function () {
         var auth2 = gapi.auth2.init();
-        auth2.then(function() {
+        auth2.then(function () {
             gapi.signin2.render('google-signin-button', {
                 'onsuccess': 'onSignIn'
             });

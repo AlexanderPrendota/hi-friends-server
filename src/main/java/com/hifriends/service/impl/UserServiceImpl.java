@@ -33,7 +33,6 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<User> getAllActiveUsers(long id) {
-        //TODO Throw exceptions
         return userRepository.findByActiveIsTrueAndIdNot(id);
     }
 
@@ -52,9 +51,9 @@ public class UserServiceImpl implements UserService {
     /**
      * Registratite user in systems and set online status
      *
-     * @param name
-     * @param email
-     * @param avatar
+     * @param name name of user
+     * @param email email
+     * @param avatar image path
      * @return
      */
     @Override

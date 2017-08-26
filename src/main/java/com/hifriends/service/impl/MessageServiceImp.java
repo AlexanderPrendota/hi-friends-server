@@ -1,5 +1,6 @@
 package com.hifriends.service.impl;
 
+import com.hifriends.exception.PostMessageException;
 import com.hifriends.model.Chat;
 import com.hifriends.model.Message;
 import com.hifriends.model.User;
@@ -38,11 +39,9 @@ public class MessageServiceImp implements MessageService {
      * Post message entity to db
      *
      * @param messagePostDto
-     * @return new Message entity
      */
     @Override
     public void postMessage(MessagePostDto messagePostDto) {
-        // TODO: throw exception
         User sender = userRepository.findOne(messagePostDto.getSenderId());
         Chat chat = chatRepository.findOne(messagePostDto.getChatId());
         if (sender != null && chat != null) {
@@ -52,6 +51,8 @@ public class MessageServiceImp implements MessageService {
                     .text(messagePostDto.getText())
                     .timeStamp(messagePostDto.getTimeStamp()).build();
             messageRepository.save(message);
+        } else {
+            throw new PostMessageException("Chat or user was incorrect. Problems with sending message");
         }
     }
 

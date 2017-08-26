@@ -55,16 +55,16 @@ var logo = {
             }
         ],
         "dimensions": {
-                "width": 100,
+            "width": 100,
             "height": 100
         }
     }
 };
 
-$(document).ready(function(){
+$(document).ready(function () {
     $('#logo').lazylinepainter(
         {
-            "speedMultiplier" : 0.4,
+            "speedMultiplier": 0.4,
             "svgData": logo,
             "strokeWidth": 1,
             "strokeColor": "#000000"

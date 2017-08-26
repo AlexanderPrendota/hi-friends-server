@@ -10,16 +10,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * @author  by aleksandrprendota on 22.08.17.
- *
  * Login controller for user registration by google account
+ *
+ * @author by aleksandrprendota on 22.08.17.
  */
 @Controller
 @RequestMapping
 public class LoginController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(path = "chat", method = RequestMethod.POST)
     public String login(@RequestParam(value = "name") String name,
