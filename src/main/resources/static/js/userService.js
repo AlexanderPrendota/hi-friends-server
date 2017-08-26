@@ -2,7 +2,7 @@ var currentActiveUser = 0;
 var currentMessage = 0;
 
 jQuery(function ($) {
-
+    autosize($('textarea'));
     var chatPerson = null;
     var name = null;
     var lastChatPerson = null;
@@ -27,6 +27,7 @@ jQuery(function ($) {
     });
 
     getActiveUsers();
+
 
     function getActiveUsers() {
         getUsers();
@@ -76,7 +77,9 @@ jQuery(function ($) {
         }
 
         $('#users span').on("click", function (event) {
-            chatPerson = $(event.target).attr('id');
+            var chatPerson = $(event.target).attr('id');
+            var apponentName = $('#' + chatPerson).text();
+            $("#apponent").text(apponentName);
             $('#chat').show();
             downloadMessages();
         });
@@ -124,7 +127,7 @@ jQuery(function ($) {
             timeStamp: new Date(),
             chatId: currentChatId
         });
-        if (msgText.length > 0) {
+        if (msgText.length > 0 && currentChatId > 0) {
             $.ajax({
                 type: "POST",
                 url: "api/message/save",
