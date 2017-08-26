@@ -44,7 +44,8 @@ public class MessageServiceImp implements MessageService {
     public void postMessage(MessagePostDto messagePostDto) {
         User sender = userRepository.findOne(messagePostDto.getSenderId());
         Chat chat = chatRepository.findOne(messagePostDto.getChatId());
-        if (sender != null && chat != null) {
+        int countOfCharacters = messagePostDto.getText().length();
+        if (sender != null && chat != null && countOfCharacters <= 255) {
             Message message = Message.builder()
                     .chat(chat)
                     .sender(sender)
@@ -52,7 +53,7 @@ public class MessageServiceImp implements MessageService {
                     .timeStamp(messagePostDto.getTimeStamp()).build();
             messageRepository.save(message);
         } else {
-            throw new PostMessageException("Chat or user was incorrect. Problems with sending message");
+            throw new PostMessageException("Problems with sending message");
         }
     }
 

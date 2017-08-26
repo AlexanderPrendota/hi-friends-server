@@ -77,7 +77,7 @@ jQuery(function ($) {
         }
 
         $('#users span').on("click", function (event) {
-            var chatPerson = $(event.target).attr('id');
+            chatPerson = $(event.target).attr('id');
             var apponentName = $('#' + chatPerson).text();
             $("#apponent").text(apponentName);
             $('#chat').show();

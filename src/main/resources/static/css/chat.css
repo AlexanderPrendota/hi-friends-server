@@ -1,7 +1,7 @@
 html, body, div, span,
 h1, h2, h3, h4, h5, h6, p, img,
-b, u, i , ul, li, form, label,
-table,tbody, tfoot, fieldset, textarea, thead, tr, th, td{
+b, u, i, ul, li, form, label,
+table, tbody, tfoot, fieldset, textarea, thead, tr, th, td {
     margin: 0;
     padding: 0;
     border: 0;
@@ -9,6 +9,7 @@ table,tbody, tfoot, fieldset, textarea, thead, tr, th, td{
     font: inherit;
     vertical-align: baseline;
 }
+
 body {
     min-width: 320px;
     height: 100%;
@@ -20,6 +21,7 @@ body {
     font-size: 16px;
     line-height: 1.6;
 }
+
 table {
     border-spacing: 0;
     border-collapse: collapse;
@@ -27,12 +29,13 @@ table {
 
 .wrapper {
     padding: 100px 160px 100px 75px;
+    max-width: 1200px;
+    margin: auto;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
 
@@ -56,42 +59,63 @@ table {
 }
 
 @media only screen and (max-width: 960px), only screen and (max-device-width: 960px), only screen and (max-device-height: 960px) {
-    .aside { display: block }
-    .wrapper { padding-right: 50px }
+    .aside {
+        display: block
+    }
+
+    .wrapper {
+        padding-right: 50px
+    }
 }
+
 @media all and (min-width: 600px) {
-    .aside { flex: 1 auto; }
+    .aside {
+        flex: 1 auto;
+    }
 }
 
 @media all and (min-width: 800px) {
-    .main    { flex: 3 0; }
-    .aside { order: 1; }
-    .main    { order: 2; }
+    .main {
+        flex: 3 0;
+    }
+
+    .aside {
+        order: 1;
+    }
+
+    .main {
+        order: 2;
+    }
 }
 
 h1 {
     font-size: 26px;
     font-weight: 400;
 }
+
 h2 {
     font-size: 20px;
     font-weight: 400;
 }
+
 ._title {
     border-bottom: solid 1px #e9ded6;
 }
+
 .container {
     padding: 20px 40px;
 }
 
-.chat-header{
+.chat-header {
     height: 45px;
     text-align: center;
 }
+
 ._users li {
     padding: 10px 40px;
     display: flex;
 }
+
 ._users li._active {
     cursor: pointer;
     border: 1px;
@@ -100,9 +124,11 @@ h2 {
 ._users li._active:hover {
     background-color: #e9ded6;
 }
+
 .usersList {
     margin: auto 0;
 }
+
 .usersListIcon {
     margin: auto 10px 0 0;
     display: block;
@@ -111,6 +137,7 @@ h2 {
     background-size: 115px auto;
     border-radius: 50%;
 }
+
 .message {
     position: absolute;
     bottom: 0;
@@ -118,11 +145,13 @@ h2 {
     height: 50px;
     border-top: solid 1px #e9ded6;
 }
+
 .message-input {
     margin-right: 180px;
     display: block;
     height: 50px;
 }
+
 .message-input textarea {
     padding: 10px 20px;
     display: block;
@@ -139,6 +168,7 @@ textarea {
     font-size: 23px;
     line-height: 2;
 }
+
 button {
     position: absolute;
     bottom: 0;
@@ -150,30 +180,46 @@ button {
     color: #fff;
     background-color: #a59f9d;
 }
+
 .messageItem {
     margin-bottom: 20px;
     margin-right: 20%;
     display: flex;
 }
+
 .messageItem._replay {
     margin-left: 20%;
     margin-right: 0;
 }
+
+.messageItemSecond {
+    margin-bottom: 20px;
+    margin-left: 320px;
+    display: flex;
+}
+
 .messageItem .messageUser {
     width: 100px;
 }
+
+.messageItemSecond .messageUser {
+    width: 100px;
+}
+
 .messageUser .usersListIcon {
     width: 100px;
     height: 90px;
     background-size: 80px auto;
     background-position: 50% 0;
 }
+
 .messageUser .userName {
     text-align: center;
     font-weight: 700;
     font-size: 90%;
     line-height: 1;
 }
+
 .messageText {
     position: relative;
     padding: 20px;
@@ -181,11 +227,19 @@ button {
     margin-left: 7px;
     background: #f5f4f4;
 }
+
 .messageItem._replay .messageText {
     margin-left: 0;
     margin-right: 7px;
     background-color: #f0e8e2;
 }
+
+.messageItemSecond._replay .messageText {
+    margin-left: 0;
+    margin-right: 7px;
+    background-color: #f0e8e2;
+}
+
 .messageText:after {
     content: "";
     position: absolute;
@@ -197,36 +251,47 @@ button {
     border-width: 10px 7px 10px 0;
     border-color: transparent #f5f4f4;
 }
+
 .messageItem._replay .messageText:after {
     left: auto;
     right: -7px;
     border-width: 10px 0 10px 7px;
     border-color: transparent #f0e8e2;
 }
+
+.messageItemSecond._replay .messageText:after {
+    left: auto;
+    right: -7px;
+    border-width: 10px 0 10px 7px;
+    border-color: transparent #f0e8e2;
+}
+
 .messageDate {
     margin-top: 5px;
     font-size: 90%;
     color: #9e9895;
 }
-.messages{
+
+.messages {
     overflow-y: scroll;
     height: 400px;
 }
 
-.text{
+.text {
     padding: 20px;
     font-size: 60px;
     font-family: 'Passion One', cursive;
     text-align: center;
     margin: 0 auto;
 }
-.messageIcon{
-    width: 60px;
-    height: 60px;
+
+.messageIcon {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    margin-left: 10px;
 }
 
-
-.messageTime{
+.messageTime {
     font-size: 14px;
 }
