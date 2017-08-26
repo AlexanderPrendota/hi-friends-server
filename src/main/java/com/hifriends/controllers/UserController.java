@@ -38,7 +38,7 @@ public class UserController {
      *
      * @param id
      */
-    // TODO: send id
+
     @RequestMapping(value = "/logout/{id}", method = RequestMethod.POST)
     public void updateUserStatus(@PathVariable long id) {
         userService.updateUserStatus(id);

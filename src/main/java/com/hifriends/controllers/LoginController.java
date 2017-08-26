@@ -18,12 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping
 public class LoginController {
 
-    private final UserService userService;
-
     @Autowired
-    public LoginController(UserService userService) {
-        this.userService = userService;
-    }
+    private UserService userService;
 
     @RequestMapping(path = "chat", method = RequestMethod.POST)
     public String login(@RequestParam(value = "name") String name,

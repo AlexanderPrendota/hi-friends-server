@@ -10,7 +10,6 @@ import java.util.Date;
  * @author by aleksandrprendota on 24.08.17.
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class MessageDto {
     private String text;
