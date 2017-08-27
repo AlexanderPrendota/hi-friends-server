@@ -1,12 +1,9 @@
 package com.hifriends.controllers;
 
-import com.hifriends.model.User;
+import com.hifriends.model.dto.UserDto;
 import com.hifriends.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,11 +22,10 @@ public class UserController {
     /**
      * Get list of active user in chat
      *
-     * @return
+     * @return user dto
      */
-    // TODO: to dto
     @RequestMapping(value = "/active/{id}", method = RequestMethod.GET)
-    public List<User> getActiveUsers(@PathVariable long id) {
+    public List<UserDto> getActiveUsers(@PathVariable long id) {
         return userService.getAllActiveUsers(id);
     }
 
@@ -43,5 +39,15 @@ public class UserController {
     @RequestMapping(value = "/logout/{id}", method = RequestMethod.POST)
     public void updateUserStatus(@PathVariable long id) {
         userService.updateUserStatus(id);
+    }
+
+    /**
+     * User notification without current companion notifications
+     * @param ownerId id
+     * @return userDto
+     */
+    @RequestMapping(value = "/notify/owner/{ownerId}", method = RequestMethod.GET)
+    public List<UserDto> userNotifications(@PathVariable long ownerId){
+        return userService.getUsersIdsByNewMessages(ownerId);
     }
 }

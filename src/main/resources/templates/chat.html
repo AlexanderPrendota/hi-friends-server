@@ -21,7 +21,7 @@
             <div class="container chat-header">
                 <h1 id="ownerTag"
                     data-th-attr="data-owner-id=${chatOwner.id}, data-owner-name=${chatOwner.name},data-owner-active=${chatOwner.active},data-owner-email=${chatOwner.email},data-owner-avatar=${chatOwner.imagePath}">
-                   <span id="apponent"></span>
+                    <span id="apponent"></span>
                 </h1>
             </div>
         </div>
@@ -33,7 +33,8 @@
 
         <div class="message">
             <div>
-                <textarea id="message" class="message-input" type="text" maxlength="255" placeholder=" Сообщение...."></textarea>
+                <textarea id="message" class="message-input" type="text" maxlength="255"
+                          placeholder=" Сообщение...."></textarea>
                 <button id="send">Отправить</button>
             </div>
         </div>
@@ -47,5 +48,6 @@
 </div>
 <script src="js/autosize.js"></script>
 <script src="js/service.chat.js"></script>
+<script src="js/notification.service.js"></script>
 </body>
 </html>

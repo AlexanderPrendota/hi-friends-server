@@ -295,3 +295,19 @@ button {
 .messageTime {
     font-size: 14px;
 }
+
+.user-row{
+    width: 150px;
+}
+.badge {
+    float: right;
+    padding: 3px 7px;
+    font-size: 12px;
+    line-height: 1;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #50c8fa;
+    border-radius: 50%;
+}

@@ -1,14 +1,12 @@
 package com.hifriends.repository;
 
-import com.hifriends.model.Chat;
-import com.hifriends.model.User;
 import com.hifriends.model.UserChat;
 import org.springframework.data.repository.CrudRepository;
-
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author by aleksandrprendota on 22.08.17.
  */
+@Repository
 public interface UserChatRepository extends CrudRepository<UserChat,Long> {
 }

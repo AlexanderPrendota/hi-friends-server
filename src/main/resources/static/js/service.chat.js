@@ -2,6 +2,7 @@
  * Created by aleksandrprendota on 27.08.17.
  */
 var currentActiveUser = 0;
+var notificationIds = [];
 var chatPerson = null;
 var name = null;
 var lastChatPerson = null;
@@ -25,8 +26,17 @@ jQuery(function ($) {
     // for auto size textarea.
     autosize($('textarea'));
 
-    // get all users who is online
-    getActiveUsers(chatOwnerId);
+    chain(function(next) {
+        // start notification
+        startNotification(chatOwnerId);
+        next();
+    }).then(function(next) {
+        // get all users who is online
+        setTimeout(function() {
+            getActiveUsers(chatOwnerId);
+            next();
+        }, 300);
+    });
 
     //polling for getting chat message between two users
     loadMessage(chatOwnerId);
@@ -73,13 +83,19 @@ function drawActiveUsers(data, chatOwnerId) {
     var classNot = "usersListIcon";
     $('#users').empty();
     for (var i = 0; i < data.length; i++) {
-        ids.push(data[i].id);
+        var userId = data[i].id;
+        ids.push(userId);
         var name = data[i].name;
         var imagePath = data[i].imagePath;
-        var userId = data[i].id;
         var backImg = " src=" + '"' + imagePath + '"';
         var userRow = "<li class=" + classActive + "><img class=" + classNot + backImg + "/><span id=" + userId + ">" + name + "</span></li>";
-        $('#users').append(userRow)
+        $('#users').append(userRow);
+
+    }
+    setNotification();
+
+    if (chatPerson !== null){
+        deleteNotification(chatPerson);
     }
 
     if (ids.indexOf(parseInt(chatPerson)) === -1) {
@@ -94,6 +110,7 @@ function drawActiveUsers(data, chatOwnerId) {
 
     $('#users span').on("click", function (event) {
         chatPerson = $(event.target).attr('id');
+        deleteNotification(chatPerson);
         var apponentName = $('#' + chatPerson).text();
         $("#apponent").text(apponentName);
         $('#chat').show();
@@ -145,6 +162,7 @@ function sendingMessage(chatOwnerId) {
                     downloadMessages(chatOwnerId);
                     console.log("Отправлено успешно");
                     $("#message").val("");
+                    $("textarea").css("height", "50px");
                 },
                 error: function (error) {
                     $("#message").val("");
@@ -153,4 +171,20 @@ function sendingMessage(chatOwnerId) {
             });
         }
     });
+}
+
+function chain(callback) {
+    var queue = [];
+    function _next() {
+        var cb = queue.shift();
+        if (cb) {
+            cb(_next);
+        }
+    }
+    setTimeout(_next, 0);
+    var then = function(cb) {
+        queue.push(cb);
+        return { then: then }
+    };
+    return then(callback);
 }

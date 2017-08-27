@@ -8,7 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implementation UserService
@@ -19,6 +21,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static final long HALF_OF_MINUTE =  1800L;
 
     @Autowired
     private UserRepository userRepository;
@@ -32,8 +35,11 @@ public class UserServiceImpl implements UserService {
      * @return list of user with true activity
      */
     @Override
-    public List<User> getAllActiveUsers(long id) {
-        return userRepository.findByActiveIsTrueAndIdNot(id);
+    public List<UserDto> getAllActiveUsers(long id) {
+        return userRepository.findByActiveIsTrueAndIdNot(id)
+                .stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -66,6 +72,24 @@ public class UserServiceImpl implements UserService {
         }
         userRepository.save(user);
         return convertToDto(user);
+    }
+
+    /**
+     * Chat owner has message notifications.
+     * unlike notification with current companion.
+     * Get notification only for 30 sec.
+     * @param idOwner chat owner id
+     * @return list of users.
+     */
+    @Override
+    public List<UserDto> getUsersIdsByNewMessages(long idOwner) {
+        Date currentTime = new Date();
+        // Have locale problems on my computer =( that's why 3600 * 60
+        long time = currentTime.getTime() - UserServiceImpl.HALF_OF_MINUTE - 3600L * 60L;
+        return userRepository.findLastUsersMessage(idOwner, new Date(time))
+                .stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
     }
 
     private UserDto convertToDto(User user) {
