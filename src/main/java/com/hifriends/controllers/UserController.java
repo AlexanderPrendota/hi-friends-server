@@ -27,6 +27,7 @@ public class UserController {
      *
      * @return
      */
+    // TODO: to dto
     @RequestMapping(value = "/active/{id}", method = RequestMethod.GET)
     public List<User> getActiveUsers(@PathVariable long id) {
         return userService.getAllActiveUsers(id);

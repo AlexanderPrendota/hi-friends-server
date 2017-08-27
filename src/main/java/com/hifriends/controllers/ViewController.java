@@ -4,6 +4,7 @@ import com.hifriends.model.Chat;
 import com.hifriends.model.dto.MessageDto;
 import com.hifriends.service.api.ChatService;
 import com.hifriends.service.api.MessageService;
+import com.hifriends.service.impl.ChatServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +28,8 @@ public class ViewController {
     private ChatService chatService;
 
     @RequestMapping(value = "/messages", method = RequestMethod.POST)
-    public String load(@RequestParam(value = "ownerId") long ownerId,
-                       @RequestParam(value = "userId") long userId, Model model) {
+    public String loadMessages(@RequestParam(value = "ownerId") long ownerId,
+                               @RequestParam(value = "userId") long userId, Model model) {
         Chat chat = chatService.findChatMessageBy2users(ownerId, userId);
         List<MessageDto> messages = messageService.findByChat(chat);
         model.addAttribute("chatId", chat.getId());
@@ -36,5 +37,4 @@ public class ViewController {
         model.addAttribute("from", ownerId);
         return "messages :: messagesList";
     }
-
 }
