@@ -84,6 +84,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getUsersIdsByNewMessages(long idOwner) {
         Date currentTime = new Date();
+        // TODO : fix date
         // Have locale problems on my computer =( that's why 3600 * 60
         long time = currentTime.getTime() - UserServiceImpl.HALF_OF_MINUTE - 3600L * 60L;
         return userRepository.findLastUsersMessage(idOwner, new Date(time))
