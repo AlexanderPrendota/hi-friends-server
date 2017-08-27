@@ -65,7 +65,7 @@ public class MessageServiceImp implements MessageService {
      */
     @Override
     public List<MessageDto> findByChat(Chat id) {
-        return messageRepository.findByChat(id)
+        return messageRepository.findByChatOrderByTimeStamp(id)
                 .stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());

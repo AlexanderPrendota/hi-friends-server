@@ -88,7 +88,7 @@ function drawActiveUsers(data, chatOwnerId) {
         var name = data[i].name;
         var imagePath = data[i].imagePath;
         var backImg = " src=" + '"' + imagePath + '"';
-        var userRow = "<li class=" + classActive + "><img class=" + classNot + backImg + "/><span id=" + userId + ">" + name + "</span></li>";
+        var userRow = "<li class=" + classActive + "><img class=" + classNot + backImg + "/><span class='user-row' id=" + userId + ">" + name + "</span></li>";
         $('#users').append(userRow);
 
     }

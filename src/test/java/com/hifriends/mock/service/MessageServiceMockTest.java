@@ -10,6 +10,7 @@ import com.hifriends.repository.MessageRepository;
 import com.hifriends.repository.UserRepository;
 import com.hifriends.service.impl.MessageServiceImp;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -83,9 +84,9 @@ public class MessageServiceMockTest {
 
     @Test
     public void findByChat() throws Exception {
-        when(messageRepository.findByChat(chat)).thenReturn(new ArrayList<>());
+        when(messageRepository.findByChatOrderByTimeStamp(chat)).thenReturn(new ArrayList<>());
         messageService.findByChat(chat);
-        verify(messageRepository).findByChat(chat);
+        verify(messageRepository).findByChatOrderByTimeStamp(chat);
     }
 
 }

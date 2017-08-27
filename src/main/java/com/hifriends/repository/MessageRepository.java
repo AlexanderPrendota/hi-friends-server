@@ -12,5 +12,5 @@ import java.util.List;
  */
 @Repository
 public interface MessageRepository extends CrudRepository<Message, Long>{
-    List<Message> findByChat(Chat chat);
+    List<Message> findByChatOrderByTimeStamp(Chat chat);
 }
