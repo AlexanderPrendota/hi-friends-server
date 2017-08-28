@@ -42,3 +42,21 @@ public interface UserRepository extends CrudRepository<User, Long> {
     List<User> findLastUsersMessage(@Param("ownerId") long userId,
                                     @Param("messageTime") Date date);
 }
+
+// it works too
+
+//    select distinct u.*
+//        from users u
+//        ,messages m
+//        ,(
+//        select distinct uc.chat_id
+//        from user_chats uc
+//        where uc.user_id = :ownerId
+//        ) c
+//        ,user_chats uc
+//        where m.sender_id <> :ownerId
+//        and m.chat_id = uc.chat_id
+//        and uc.chat_id = c.chat_id
+//        and u.id = uc.user_id
+//        and u.id <> :ownerId
+//        and time_stamp > :messageTime
