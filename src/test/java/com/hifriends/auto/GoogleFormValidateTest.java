@@ -2,6 +2,7 @@ package com.hifriends.auto;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +25,7 @@ public class GoogleFormValidateTest {
     }
 
     @Test
+    @Ignore
     public void googleFormValidateTest() throws Exception {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);

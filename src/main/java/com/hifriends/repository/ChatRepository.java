@@ -6,6 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author by aleksandrprendota on 22.08.17.
  */
@@ -24,4 +26,8 @@ public interface ChatRepository extends CrudRepository<Chat, Long> {
             "u.id = :idUser1 and u2.id = :idUser2"
             , nativeQuery = true)
     Chat findChatByUsers(@Param("idUser1") long firstUser, @Param("idUser2") long secondUser);
+
+    @Query(value = "SELECT DISTINCT c.chat_id FROM user_chats uc, chat c " +
+            "WHERE uc.user_id = :idUser", nativeQuery = true)
+    List<Chat> findUserChats(@Param("idUser") long id);
 }

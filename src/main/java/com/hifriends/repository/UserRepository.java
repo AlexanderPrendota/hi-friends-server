@@ -27,12 +27,14 @@ public interface UserRepository extends CrudRepository<User, Long> {
      * @return list of users.
      */
     @Query(value =
-            "SELECT DISTINCT u.* FROM users u, messages m, user_chats uc " +
-            "WHERE " +
-            "uc.user_id = :ownerId AND " +
-            "m.time_stamp < :messageTime AND " +
-            "m.sender_id <> :ownerId AND " +
-            "u.id = m.sender_id"
+            "SELECT DISTINCT u2.* FROM users u, users u2, messages m, user_chats uc " +
+                    "where uc.user_id = u.id AND " +
+                    "m.chat_id = uc.chat_id and " +
+                    "uc.user_id = :ownerId and " +
+                    "m.time_stamp > :messageTime and " +
+                    "m.sender_id <> u.id and " +
+                    "m.sender_id = u2.id and " +
+                    "u2.id <> :ownerId"
             , nativeQuery = true)
     List<User> findLastUsersMessage(@Param("ownerId") long userId,
                                     @Param("messageTime") Date date);
