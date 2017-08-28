@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private static final long HALF_OF_MINUTE =  1800L;
+    private static final long TEN_SECONDS = 10000L;
 
     @Autowired
     private UserRepository userRepository;
@@ -57,8 +57,8 @@ public class UserServiceImpl implements UserService {
     /**
      * Registratite user in systems and set online status
      *
-     * @param name name of user
-     * @param email email
+     * @param name   name of user
+     * @param email  email
      * @param avatar image path
      * @return
      */
@@ -78,15 +78,14 @@ public class UserServiceImpl implements UserService {
      * Chat owner has message notifications.
      * unlike notification with current companion.
      * Get notification only for 30 sec.
+     *
      * @param idOwner chat owner id
      * @return list of users.
      */
     @Override
     public List<UserDto> getUsersIdsByNewMessages(long idOwner) {
         Date currentTime = new Date();
-        // TODO : fix date
-        // Have locale problems on my computer =( that's why 3600 * 60
-        long time = currentTime.getTime() - UserServiceImpl.HALF_OF_MINUTE - 3600L * 60L;
+        long time = currentTime.getTime() - UserServiceImpl.TEN_SECONDS;
         return userRepository.findLastUsersMessage(idOwner, new Date(time))
                 .stream()
                 .map(this::convertToDto)

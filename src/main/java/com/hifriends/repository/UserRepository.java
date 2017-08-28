@@ -22,8 +22,11 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     /**
      * Chat owner has message notifications.
+     * Getting all users who sent the message to ownerId.
+     * where message date more than messageTime
+     *
      * @param userId chat owner id
-     * @param date date
+     * @param date   date
      * @return list of users.
      */
     @Query(value =

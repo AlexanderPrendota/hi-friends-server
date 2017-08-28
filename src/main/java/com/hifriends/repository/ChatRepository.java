@@ -16,7 +16,8 @@ public interface ChatRepository extends CrudRepository<Chat, Long> {
 
     /**
      * Get chat between 2 users.
-     * @param firstUser id
+     *
+     * @param firstUser  id
      * @param secondUser id
      * @return chat entity
      */
@@ -27,6 +28,11 @@ public interface ChatRepository extends CrudRepository<Chat, Long> {
             , nativeQuery = true)
     Chat findChatByUsers(@Param("idUser1") long firstUser, @Param("idUser2") long secondUser);
 
+    /**
+     * Getting all chat by user
+     * @param id user entity
+     * @return
+     */
     @Query(value = "SELECT DISTINCT c.chat_id FROM user_chats uc, chat c " +
             "WHERE uc.user_id = :idUser", nativeQuery = true)
     List<Chat> findUserChats(@Param("idUser") long id);

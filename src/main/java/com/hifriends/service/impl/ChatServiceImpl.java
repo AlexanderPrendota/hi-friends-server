@@ -28,10 +28,9 @@ public class ChatServiceImpl implements ChatService {
     private UserRepository userRepository;
 
     @PostConstruct
-    public void initGeneralChat(){
+    public void initGeneralChat() {
 
     }
-
 
     /**
      * Get chat by 2 users
@@ -62,7 +61,7 @@ public class ChatServiceImpl implements ChatService {
     public void createChats(Chat chat, long ownerId, long recipientId) {
         User recipient = userRepository.findOne(recipientId);
         User owner = userRepository.findOne(ownerId);
-        if (recipient != null && owner != null){
+        if (recipient != null && owner != null) {
             saveUserChat(recipient, chat);
             saveUserChat(owner, chat);
         }
