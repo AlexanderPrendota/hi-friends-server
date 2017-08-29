@@ -1,0 +1,22 @@
+version: '2'
+services:
+  db:
+    image: postgres:latest
+    container_name: hif_db
+    environment:
+      - POSTGRES_PASSWORD=12345
+    ports:
+      - "5434:5432"
+  hi:
+    build: .
+    container_name: hif
+    image: hif
+    links:
+      - db
+    ports:
+      - "3131:3131"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=12345
+      - SERVER_PORT=3131

@@ -18,6 +18,14 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceConfig {
 
+    /**
+     * Comment this bean if your want to start application
+     * from DOCKER container.
+     *
+     * db configuration in application.prorerties.
+     *
+     * @return
+     */
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource")

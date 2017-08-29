@@ -20,7 +20,7 @@ function getNotifications(chatOwnerId) {
             if (response.length > 0) {
                 for (var i = 0; i < response.length; i++) {
                     var userId = response[i].id;
-                    if (notificationIds.indexOf(userId) === -1) {
+                    if (notificationIds.indexOf(userId) == -1) {
                         notificationIds.push(userId);
                     }
                 }
@@ -31,7 +31,6 @@ function getNotifications(chatOwnerId) {
 
 function deleteNotification(userId) {
     // hate indexOf!
-    console.log("СЮДА");
     console.log(userId);
     for (var i = 0; i < notificationIds.length; i++) {
         if (notificationIds[i] == userId){
