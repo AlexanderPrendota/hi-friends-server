@@ -13,7 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Check online users. Some users is always online.
  * like Jet Family
- * @author  by aleksandrprendota on 27.08.17.
+ *
+ * @author by aleksandrprendota on 27.08.17.
  */
 public class СurrentUserValidateTest {
 
@@ -26,10 +27,10 @@ public class СurrentUserValidateTest {
     }
 
     @Test
-    @Ignore
+    @Ignore("Run test when the app is working")
     public void validateUserTest() throws Exception {
 
-        WebDriverWait webDriverWait = new WebDriverWait(driver,10);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("google-signin-button")));
 

@@ -2,7 +2,6 @@ package com.hifriends.mock.service;
 
 import com.hifriends.model.Chat;
 import com.hifriends.model.User;
-import com.hifriends.model.UserChat;
 import com.hifriends.repository.ChatRepository;
 import com.hifriends.repository.UserChatRepository;
 import com.hifriends.repository.UserRepository;
@@ -26,16 +25,15 @@ public class ChatServiceMockTest {
     private Chat chat;
     private User userOne;
     private User userTwo;
-    private UserChat userChat;
 
     @Mock
     private ChatRepository chatRepository;
 
     @Mock
-    private UserChatRepository userChatRepository;
+    private UserRepository userRepository;
 
     @Mock
-    private UserRepository userRepository;
+    private UserChatRepository userChatRepository;
 
     @InjectMocks
     private ChatServiceImpl chatService;
@@ -48,7 +46,6 @@ public class ChatServiceMockTest {
         userTwo = new User();
         userTwo.setId(2L);
         userOne.setId(1L);
-        userChat = new UserChat();
     }
 
     @Test

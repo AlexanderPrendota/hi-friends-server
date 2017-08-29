@@ -27,14 +27,14 @@ public class UserControllerTest {
 
 
     @Test
-    public void testGetActiveUsers(){
+    public void testGetActiveUsers() {
         when(userService.getAllActiveUsers(1L)).thenReturn(new ArrayList<>());
         userController.getActiveUsers(1L);
         verify(userService).getAllActiveUsers(1L);
     }
 
     @Test
-    public void testUpdateUserStatus(){
+    public void testUpdateUserStatus() {
         doNothing().when(userService).updateUserStatus(1L);
         userController.updateUserStatus(1L);
         verify(userService, times(1)).updateUserStatus(1L);
@@ -42,7 +42,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testGetUserNotifications(){
+    public void testGetUserNotifications() {
         when(userService.getUsersIdsByNewMessages(1L)).thenReturn(new ArrayList<>());
         userController.userNotifications(1L);
         verify(userService).getUsersIdsByNewMessages(1L);

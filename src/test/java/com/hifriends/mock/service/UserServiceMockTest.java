@@ -61,4 +61,13 @@ public class UserServiceMockTest {
         verify(userRepository).findByEmail(user.getEmail());
         verify(modelMapper).map(any(), any());
     }
+
+    @Test
+    public void registrateUserNot() throws Exception {
+        when(userRepository.findByEmail("A@a")).thenReturn(null);
+        when(modelMapper.map(any(), any())).thenReturn(new UserDto());
+        userService.registrateUser("Alex", "A@a", "/path");
+        verify(userRepository).findByEmail("A@a");
+        verify(modelMapper).map(any(), any());
+    }
 }

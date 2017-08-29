@@ -31,39 +31,39 @@ public class DtoTest {
         messagePostDto.setChatId(1L);
         messagePostDto.setSenderId(1L);
 
-        Assert.assertEquals(messagePostDto.getSenderId(),1L);
-        Assert.assertEquals(messagePostDto.getChatId(),1L);
-        Assert.assertEquals(messagePostDto.getText(),"text");
+        Assert.assertEquals(messagePostDto.getSenderId(), 1L);
+        Assert.assertEquals(messagePostDto.getChatId(), 1L);
+        Assert.assertEquals(messagePostDto.getText(), "text");
     }
 
     @Test
-    public void messageDtoTest(){
+    public void messageDtoTest() {
         messageDto.setSenderId(1L);
         messageDto.setSenderImagePath("path");
         messageDto.setSenderName("name");
         messageDto.setTimeStamp(new Date());
         messageDto.setText("text");
 
-        Assert.assertEquals(messageDto.getSenderId(),1L);
-        Assert.assertEquals(messageDto.getText(),"text");
-        Assert.assertEquals(messageDto.getSenderImagePath(),"path");
-        Assert.assertEquals(messageDto.getSenderName(),"name");
+        Assert.assertEquals(messageDto.getSenderId(), 1L);
+        Assert.assertEquals(messageDto.getText(), "text");
+        Assert.assertEquals(messageDto.getSenderImagePath(), "path");
+        Assert.assertEquals(messageDto.getSenderName(), "name");
 
     }
 
     @Test
-    public void testUserDro(){
+    public void testUserDro() {
         userDto.setActive(true);
         userDto.setEmail("email");
         userDto.setId(1L);
         userDto.setImagePath("path");
         userDto.setName("name");
 
-        Assert.assertEquals(userDto.getName(),"name");
-        Assert.assertEquals(userDto.getImagePath(),"path");
-        Assert.assertEquals(userDto.getEmail(),"email");
-        Assert.assertEquals(userDto.getId(),1L);
-        Assert.assertEquals(userDto.isActive(),true);
+        Assert.assertEquals(userDto.getName(), "name");
+        Assert.assertEquals(userDto.getImagePath(), "path");
+        Assert.assertEquals(userDto.getEmail(), "email");
+        Assert.assertEquals(userDto.getId(), 1L);
+        Assert.assertEquals(userDto.isActive(), true);
 
     }
 }

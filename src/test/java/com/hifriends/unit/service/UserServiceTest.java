@@ -1,6 +1,7 @@
 package com.hifriends.unit.service;
 
 import com.hifriends.model.User;
+import com.hifriends.model.dto.UserDto;
 import com.hifriends.repository.UserRepository;
 import com.hifriends.service.api.UserService;
 import org.junit.After;
@@ -12,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
+import java.util.List;
 
 /**
  * @author by aleksandrprendota on 26.08.17.
@@ -42,6 +43,12 @@ public class UserServiceTest {
         userService.updateUserStatus(userId);
         User updatedUser = userRepository.findOne(userId);
         Assert.assertFalse(updatedUser.isActive());
+    }
+
+    @Test
+    public void getUsersIdsByNewMessagesTest() {
+        List<UserDto> userDtos = userService.getUsersIdsByNewMessages(2L);
+        Assert.assertTrue(userDtos.size() == 0);
     }
 
 

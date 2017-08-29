@@ -9,8 +9,4 @@ public class PostMessageException extends MessageException {
         super(message);
     }
 
-    public PostMessageException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
 }

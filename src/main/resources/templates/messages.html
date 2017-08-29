@@ -16,8 +16,9 @@
                     <div class="userName" th:text="${message.senderName}">
                     </div>
                 </div>
-                <div th:classappend="${message.senderId == from} ? messageText : messageTextCompanion"
-                     th:text="${message.text + ' ' + #dates.format(message.timeStamp, 'dd-MM-yyyy HH:mm') + from}">
+                <div th:classappend="${message.senderId == from} ? messageText : messageTextCompanion">
+                    <div th:text="${message.text}"></div>
+                    <div class="messageDate" th:text="${#dates.format(message.timeStamp, 'dd-MM-yyyy HH:mm')}">text</div>
                 </div>
             </div>
         </div>

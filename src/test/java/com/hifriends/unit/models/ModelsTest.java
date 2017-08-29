@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.util.Date;
 
 /**
- * Created by aleksandrprendota on 26.08.17.
+ * @author by aleksandrprendota on 26.08.17.
  */
 public class ModelsTest {
 

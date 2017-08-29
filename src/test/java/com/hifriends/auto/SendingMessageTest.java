@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * @author  by aleksandrprendota on 28.08.17.
+ * @author by aleksandrprendota on 28.08.17.
  */
 public class SendingMessageTest {
     private WebDriver driver = null;
@@ -23,10 +23,10 @@ public class SendingMessageTest {
     }
 
     @Test
-    @Ignore
+    @Ignore("Run test when the app is working")
     public void googleFormValidateTest() throws Exception {
 
-        WebDriverWait webDriverWait = new WebDriverWait(driver,10);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("google-signin-button")));
 

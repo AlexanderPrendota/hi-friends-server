@@ -166,7 +166,7 @@ h2 {
 }
 ul{
     max-height: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 textarea {
     width: calc(100% - 130px);
@@ -200,7 +200,7 @@ button {
 
 .messageItemSecond {
     margin-bottom: 20px;
-    margin-left: 320px;
+    margin-left: 490px;
     display: flex;
 }
 
@@ -299,7 +299,7 @@ button {
 }
 
 .messages {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 400px;
 }
 
@@ -335,4 +335,11 @@ button {
     vertical-align: middle;
     background-color: #74dd57;
     border-radius: 50%;
+}
+.messageDate{
+    padding: 3px;
+    float: right;
+    color: grey;
+    font-family: cursive;
+    font-size: 16px;
 }

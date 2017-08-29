@@ -32,11 +32,11 @@ public class ViewControllerTest {
     private ViewController viewController;
 
     @Test
-    public void loadMessagesTest(){
+    public void loadMessagesTest() {
         when(chatService.findChatMessageBy2users(1L, 2L)).thenReturn(new Chat());
         when(messageService.findByChat(new Chat())).thenReturn(new ArrayList<>());
         viewController.loadMessages(1L, 2L, mock(Model.class));
-        verify(chatService).findChatMessageBy2users(1L,2L);
+        verify(chatService).findChatMessageBy2users(1L, 2L);
         verify(messageService).findByChat(new Chat());
     }
 }

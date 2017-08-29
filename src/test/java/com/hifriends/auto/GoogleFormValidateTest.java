@@ -25,7 +25,7 @@ public class GoogleFormValidateTest {
     }
 
     @Test
-    @Ignore
+    @Ignore("Run test when the app is working")
     public void googleFormValidateTest() throws Exception {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);

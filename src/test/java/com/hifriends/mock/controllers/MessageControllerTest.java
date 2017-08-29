@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
 import static org.mockito.Mockito.*;
 
 /**
@@ -24,9 +25,9 @@ public class MessageControllerTest {
     private MessageController messageController;
 
     @Test
-    public void saveMessage(){
-       doNothing().when(messageService).postMessage(new MessagePostDto());
-       messageController.save(new MessagePostDto());
-       verify(messageService, times(1)).postMessage(new MessagePostDto());
+    public void saveMessage() {
+        doNothing().when(messageService).postMessage(new MessagePostDto());
+        messageController.save(new MessagePostDto());
+        verify(messageService, times(1)).postMessage(new MessagePostDto());
     }
 }
