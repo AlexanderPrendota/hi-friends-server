@@ -33,7 +33,7 @@ public interface ChatRepository extends CrudRepository<Chat, Long> {
      * @param id user entity
      * @return
      */
-    @Query(value = "SELECT DISTINCT c.chat_id FROM user_chats uc, chat c " +
+    @Query(value = "SELECT DISTINCT c.chat_id FROM user_chats uc, chats c " +
             "WHERE uc.user_id = :idUser", nativeQuery = true)
     List<Chat> findUserChats(@Param("idUser") long id);
 }

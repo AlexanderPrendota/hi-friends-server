@@ -21,7 +21,7 @@ var loadMessage = function (chatOwnerId) {
 function getUsers(chatOwnerId) {
     $.ajax({
         type: "GET",
-        url: '/api/user/' + chatOwnerId + 'active/',
+        url: '/api/user/' + chatOwnerId + '/active/',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
