@@ -21,7 +21,7 @@ var loadMessage = function (chatOwnerId) {
 function getUsers(chatOwnerId) {
     $.ajax({
         type: "GET",
-        url: '/api/user/active/' + chatOwnerId,
+        url: '/api/user/' + chatOwnerId + 'active/',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
@@ -76,7 +76,6 @@ function drawActiveUsers(data, chatOwnerId) {
 
 function downloadMessages(chatOwnerId) {
     $('#message').empty();
-    console.log("Download for " + chatPerson);
     if (!isDownloading) {
         isDownloading = true;
         $("#messages").load("messages", {
@@ -116,7 +115,6 @@ function sendingMessage(chatOwnerId) {
                 data: msgData,
                 success: function (response) {
                     downloadMessages(chatOwnerId);
-                    console.log("Отправлено успешно");
                     $("#message").val("");
                     $("textarea").css("height", "50px");
                 },

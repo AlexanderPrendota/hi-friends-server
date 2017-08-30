@@ -27,10 +27,6 @@ public class ChatServiceImpl implements ChatService {
     @Autowired
     private UserRepository userRepository;
 
-    @PostConstruct
-    public void initGeneralChat() {
-
-    }
 
     /**
      * Get chat by 2 users

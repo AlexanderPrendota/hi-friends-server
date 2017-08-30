@@ -5,7 +5,6 @@
 var startNotification = function (chatOwnerId) {
     getNotifications(chatOwnerId);
     setInterval(function () {
-        console.log("Notification...");
         getNotifications(chatOwnerId);
         setNotification();
     }, 5000);
