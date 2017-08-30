@@ -7,6 +7,7 @@ var startNotification = function (chatOwnerId) {
     setInterval(function () {
         console.log("Notification...");
         getNotifications(chatOwnerId);
+        setNotification();
     }, 5000);
 };
 
@@ -31,9 +32,8 @@ function getNotifications(chatOwnerId) {
 
 function deleteNotification(userId) {
     // hate indexOf!
-    console.log(userId);
     for (var i = 0; i < notificationIds.length; i++) {
-        if (notificationIds[i] == userId){
+        if (notificationIds[i] == userId) {
             notificationIds.slice(i, 1);
             $('#badle-' + userId).remove();
         }
@@ -42,8 +42,10 @@ function deleteNotification(userId) {
 
 function setNotification() {
     for (var i = 0; i < notificationIds.length; i++) {
-        var notify = "<span id='badle-" + notificationIds[i] + "' class='badge'>1</span>";
-        $('#' + notificationIds[i]).append(notify);
-
+        var userId = notificationIds[i];
+        if (!$('#badle-' + userId).length && chatPerson != userId) {
+            var notify = "<span id='badle-" + userId + "' class='badge'>1</span>";
+            $('#' + userId).append(notify);
+        }
     }
 }

@@ -48,9 +48,8 @@ function drawActiveUsers(data, chatOwnerId) {
         $('#users').append(userRow);
 
     }
-    setNotification();
 
-    if (chatPerson !== null){
+    if (chatPerson !== null) {
         deleteNotification(chatPerson);
     }
 
@@ -63,6 +62,7 @@ function drawActiveUsers(data, chatOwnerId) {
             chatPerson = lastChatPerson;
         }
     }
+    setNotification();
 
     $('#users span').on("click", function (event) {
         chatPerson = $(event.target).attr('id');

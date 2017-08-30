@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "api/message")
 public class MessageController {
 
-    @Autowired
     private MessageService messageService;
+
+    @Autowired
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
+    }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody MessagePostDto messageDTO) {

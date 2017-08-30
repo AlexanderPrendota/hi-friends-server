@@ -16,8 +16,12 @@ import java.util.List;
 @RequestMapping(value = "api/user")
 public class UserController {
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     /**
      * Get list of active user in chat
@@ -43,11 +47,12 @@ public class UserController {
 
     /**
      * User notification without current companion notifications
+     *
      * @param ownerId id
      * @return userDto
      */
     @RequestMapping(value = "/notify/owner/{ownerId}", method = RequestMethod.GET)
-    public List<UserDto> userNotifications(@PathVariable long ownerId){
+    public List<UserDto> userNotifications(@PathVariable long ownerId) {
         return userService.getUsersIdsByNewMessages(ownerId);
     }
 }

@@ -18,9 +18,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping
 public class LoginController {
 
-    @Autowired
     private UserService userService;
 
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    /**
+     * Controller for registration your in chat
+     *
+     * @param name   of user
+     * @param email  gmail
+     * @param avatar string url from google accunt profile image
+     * @param model
+     * @return
+     */
     @RequestMapping(path = "chat", method = RequestMethod.POST)
     public String login(@RequestParam(value = "name") String name,
                         @RequestParam(value = "email") String email,

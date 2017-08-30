@@ -20,12 +20,27 @@ import java.util.List;
 @RequestMapping
 public class ViewController {
 
-    @Autowired
     private MessageService messageService;
 
-    @Autowired
     private ChatService chatService;
 
+    @Autowired
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    @Autowired
+    public void setChatService(ChatService chatService) {
+        this.chatService = chatService;
+    }
+
+    /**
+     * Controller for getting message list between two user
+     * @param ownerId chat owner id
+     * @param userId his chat partner
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/messages", method = RequestMethod.POST)
     public String loadMessages(@RequestParam(value = "ownerId") long ownerId,
                                @RequestParam(value = "userId") long userId, Model model) {
