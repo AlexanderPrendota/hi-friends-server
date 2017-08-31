@@ -63,6 +63,11 @@ public class ChatServiceImpl implements ChatService {
         }
     }
 
+    @Override
+    public Chat findById(long id){
+        return chatRepository.findOne(id);
+    }
+
     private void saveUserChat(User user, Chat chat) {
         UserChat resultChat = new UserChat();
         resultChat.setChat(chat);

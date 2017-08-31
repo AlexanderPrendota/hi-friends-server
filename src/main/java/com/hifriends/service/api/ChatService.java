@@ -11,4 +11,6 @@ public interface ChatService {
 
     void createChats(Chat chat, long owner, long recipient);
 
+    Chat findById(long id);
+
 }
