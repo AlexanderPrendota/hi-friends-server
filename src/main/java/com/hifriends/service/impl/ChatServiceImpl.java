@@ -10,7 +10,6 @@ import com.hifriends.service.api.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 
 /**
  * @author by aleksandrprendota on 25.08.17.
