@@ -41,7 +41,7 @@ public class MessageServiceImp implements MessageService {
      * @param messagePostDto
      */
     @Override
-    public void postMessage(MessagePostDto messagePostDto) {
+    public MessageDto postMessage(MessagePostDto messagePostDto) {
         User sender = userRepository.findOne(messagePostDto.getSenderId());
         Chat chat = chatRepository.findOne(messagePostDto.getChatId());
         int countOfCharacters = messagePostDto.getText().length();
@@ -52,6 +52,7 @@ public class MessageServiceImp implements MessageService {
                     .text(messagePostDto.getText())
                     .timeStamp(messagePostDto.getTimeStamp()).build();
             messageRepository.save(message);
+            return convertToDto(message);
         } else {
             throw new PostMessageException("Problems with sending message");
         }

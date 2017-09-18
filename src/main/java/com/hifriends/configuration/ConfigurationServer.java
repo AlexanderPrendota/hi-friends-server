@@ -7,6 +7,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import javax.sql.DataSource;
 
@@ -16,7 +19,7 @@ import javax.sql.DataSource;
  * @author aleksandrprendota on 22.08.17.
  */
 @Configuration
-public class DataSourceConfig {
+public class ConfigurationServer {
 
     /**
      * Comment this bean if your want to start application
@@ -44,5 +47,26 @@ public class DataSourceConfig {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
+    /**
+     * Cors bean configuration
+     *
+     * @return
+     */
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("DELETE");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+
 
 }

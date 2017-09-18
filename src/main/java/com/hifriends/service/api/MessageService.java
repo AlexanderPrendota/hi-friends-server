@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface MessageService {
 
-    void postMessage(MessagePostDto messagePostDto);
+    MessageDto postMessage(MessagePostDto messagePostDto);
 
     List<MessageDto> findByChat(Chat id);
 

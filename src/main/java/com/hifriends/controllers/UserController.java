@@ -18,32 +18,17 @@ public class UserController {
 
     private UserService userService;
 
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
 
     /**
      * Get list of active user in chat
      *
      * @return user dto
      */
-    @RequestMapping(value = "{id}/active/", method = RequestMethod.GET)
+    @RequestMapping(value = "/active/{id}", method = RequestMethod.GET)
     public List<UserDto> getActiveUsers(@PathVariable long id) {
         return userService.getAllActiveUsers(id);
     }
 
-    /**
-     * Logout user after he left the chat.
-     * Set his active to false
-     *
-     * @param id
-     */
-
-    @RequestMapping(value = "/logout/{id}", method = RequestMethod.POST)
-    public void updateUserStatus(@PathVariable long id) {
-        userService.updateUserStatus(id);
-    }
 
     /**
      * User notification without current companion notifications
@@ -54,5 +39,10 @@ public class UserController {
     @RequestMapping(value = "/notify/owner/{ownerId}", method = RequestMethod.GET)
     public List<UserDto> userNotifications(@PathVariable long ownerId) {
         return userService.getUsersIdsByNewMessages(ownerId);
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }

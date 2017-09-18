@@ -3,11 +3,10 @@ package com.hifriends.controllers;
 import com.hifriends.model.dto.UserDto;
 import com.hifriends.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Login controller for user registration by google account
@@ -20,27 +19,31 @@ public class LoginController {
 
     private UserService userService;
 
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+
+    /**
+     * Controller for registration user in chat
+     *
+     * @return User Dto
+     */
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public UserDto login(@RequestBody UserDto userDto) {
+        return userService.registrateUser(userDto.getName(), userDto.getEmail(), userDto.getImagePath());
     }
 
     /**
-     * Controller for registration your in chat
+     * Logout user after he left the chat.
+     * Set his active to false
      *
-     * @param name   of user
-     * @param email  gmail
-     * @param avatar string url from google accunt profile image
-     * @param model
-     * @return
+     * @param id
      */
-    @RequestMapping(path = "chat", method = RequestMethod.POST)
-    public String login(@RequestParam(value = "name") String name,
-                        @RequestParam(value = "email") String email,
-                        @RequestParam(value = "avatar") String avatar,
-                        Model model) {
-        UserDto chatOwner = userService.registrateUser(name, email, avatar);
-        model.addAttribute("chatOwner", chatOwner);
-        return "chat";
+
+    @RequestMapping(value = "/logout/{id}", method = RequestMethod.POST)
+    public void updateUserStatus(@PathVariable long id) {
+        userService.updateUserStatus(id);
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }

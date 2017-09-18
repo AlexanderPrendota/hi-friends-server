@@ -1,9 +1,7 @@
 package com.hifriends;
 
-import com.hifriends.mock.controllers.LoginControllerTest;
 import com.hifriends.mock.controllers.MessageControllerTest;
 import com.hifriends.mock.controllers.UserControllerTest;
-import com.hifriends.mock.controllers.ViewControllerTest;
 import com.hifriends.mock.service.ChatServiceMockTest;
 import com.hifriends.mock.service.MessageServiceMockTest;
 import com.hifriends.mock.service.UserServiceMockTest;
@@ -19,10 +17,8 @@ import org.junit.runners.Suite;
         MessageServiceMockTest.class,
         UserServiceMockTest.class,
         UserServiceTest.class,
-        LoginControllerTest.class,
         MessageControllerTest.class,
         UserControllerTest.class,
-        ViewControllerTest.class,
         ChatServiceTest.class,
         RepositoryTest.class
 })

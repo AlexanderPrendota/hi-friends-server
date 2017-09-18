@@ -34,14 +34,6 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testUpdateUserStatus() {
-        doNothing().when(userService).updateUserStatus(1L);
-        userController.updateUserStatus(1L);
-        verify(userService, times(1)).updateUserStatus(1L);
-
-    }
-
-    @Test
     public void testGetUserNotifications() {
         when(userService.getUsersIdsByNewMessages(1L)).thenReturn(new ArrayList<>());
         userController.userNotifications(1L);
