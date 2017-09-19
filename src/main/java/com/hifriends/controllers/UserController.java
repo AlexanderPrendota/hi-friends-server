@@ -5,6 +5,7 @@ import com.hifriends.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +27,14 @@ public class UserController {
      */
     @RequestMapping(value = "/active/{id}", method = RequestMethod.GET)
     public List<UserDto> getActiveUsers(@PathVariable long id) {
-        return userService.getAllActiveUsers(id);
+        // TODO: Fix one
+        List<UserDto> activeUsers = new ArrayList<>();
+        if (id == -1){
+            return activeUsers;
+        } else {
+            activeUsers = userService.getAllActiveUsers(id);
+            return activeUsers;
+        }
     }
 
 

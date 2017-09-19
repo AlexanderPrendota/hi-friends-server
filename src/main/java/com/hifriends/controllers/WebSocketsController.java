@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 public class WebSocketsController {
 
     @MessageMapping(value = "/notify")
-    @SendTo("topic/reload")
+    @SendTo("/topic/reload")
     public UserDto notificationUsers(UserDto userDto){
         return userDto;
     }

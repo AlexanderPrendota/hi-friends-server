@@ -3,9 +3,6 @@ package com.hifriends.controllers;
 import com.hifriends.model.dto.UserDto;
 import com.hifriends.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author by aleksandrprendota on 22.08.17.
  */
-@Controller
-@RequestMapping
+@RestController
 public class LoginController {
 
     private UserService userService;
@@ -37,7 +33,7 @@ public class LoginController {
      * @param id
      */
 
-    @RequestMapping(value = "/logout/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/logout/{id}", method = RequestMethod.GET)
     public void updateUserStatus(@PathVariable long id) {
         userService.updateUserStatus(id);
     }

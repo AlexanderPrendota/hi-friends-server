@@ -34,12 +34,18 @@ public class MessageController {
         return messageService.postMessage(messageDTO);
     }
 
-    @RequestMapping(value = "/chat/owner/{ownerId}/user/{userId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/chat/owner/{ownerId}/user/{userId}", method = RequestMethod.GET)
     public long getChatBetweenTwoUsers(@PathVariable long ownerId, @PathVariable long userId){
         Chat chat = chatService.findChatMessageBy2users(ownerId, userId);
         return chat.getId();
     }
 
+    /**
+     * Controller for getting message between two users
+     * @param ownerId
+     * @param userId
+     * @return
+     */
     @RequestMapping(value = "messages/{ownerId}/{userId}", method = RequestMethod.GET)
     public List<MessageDto> loadMessage(@PathVariable long ownerId, @PathVariable long userId){
         Chat chat = chatService.findChatMessageBy2users(ownerId, userId);
