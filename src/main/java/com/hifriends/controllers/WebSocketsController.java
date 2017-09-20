@@ -1,6 +1,7 @@
 package com.hifriends.controllers;
 
 
+import com.hifriends.model.dto.NotificationDto;
 import com.hifriends.model.dto.UserDto;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -17,5 +18,11 @@ public class WebSocketsController {
     @SendTo("/topic/reload")
     public UserDto notificationUsers(UserDto userDto){
         return userDto;
+    }
+
+    @MessageMapping(value = "/message")
+    @SendTo("/topic/message")
+    public NotificationDto chatNotification(NotificationDto notificationDto){
+        return  notificationDto;
     }
 }

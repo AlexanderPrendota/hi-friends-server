@@ -52,6 +52,16 @@ public class MessageController {
         return messageService.findByChat(chat);
     }
 
+    /**
+     * Get message by id
+     * @param id
+     * @return message Dto
+     */
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
+    public MessageDto getMessageById(@PathVariable long id){
+        return messageService.getMessageById(id);
+    }
+
     @Autowired
     public void setMessageService(MessageService messageService) {
         this.messageService = messageService;
