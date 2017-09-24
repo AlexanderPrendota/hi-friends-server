@@ -34,11 +34,20 @@ public DataSource dataSource() {
           .build(); 
 }
 ```
+also you must set database congiguration on `application.properties`
+
+```
+spring.datasource.url=jdbc:postgresql://host:port/db
+spring.datasource.username=db_name
+spring.datasource.password=pass
+spring.jpa.hibernate.ddl-auto=update
+server.port=your_server_port
+```
 
 then 
 
 ```bash
- mvn clean install
+ mvn clean package
  java -jar demo-0.0.1-SNAPSHOT.
 ```
 If you use `hi-server-javascript version`: Chat will be available by this link:
@@ -46,5 +55,6 @@ If you use `hi-server-javascript version`: Chat will be available by this link:
 * `http://localhost:3131`
 
 `hi-server-javascript version` GUI:
+
 ![2017-08-30 23 51 48](https://user-images.githubusercontent.com/10503748/29896533-0adf836c-8de6-11e7-891c-c402b385ce2a.png)
 
