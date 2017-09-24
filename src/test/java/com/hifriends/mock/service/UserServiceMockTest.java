@@ -49,7 +49,7 @@ public class UserServiceMockTest {
     @Test
     public void updateUserStatus() throws Exception {
         when(userRepository.findOne(1L)).thenReturn(user);
-        userService.updateUserStatus(user.getId());
+        userService.updateUserStatusToFalse(user.getId());
         verify(userRepository).findOne(user.getId());
     }
 

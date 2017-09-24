@@ -40,7 +40,7 @@ public class UserServiceTest {
     @Test
     public void updateUserStatus() throws Exception {
         long userId = userRepository.findByEmail("S@s").getId();
-        userService.updateUserStatus(userId);
+        userService.updateUserStatusToFalse(userId);
         User updatedUser = userRepository.findOne(userId);
         Assert.assertFalse(updatedUser.isActive());
     }
