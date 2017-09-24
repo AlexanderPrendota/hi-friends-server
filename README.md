@@ -1,5 +1,7 @@
 ## HiFriends chat
 
+Server for Hi-Friends-client from (https://github.com/AlexandrPrendota/HiFriends-client).
+
 ## How To Get Started
 - Copy docker-compose.yml to your server.
 - Run:
