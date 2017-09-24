@@ -19,15 +19,18 @@ public class UserController {
 
     private UserService userService;
 
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     /**
      * Get list of active user in chat
-     *
-     * @return user dto
+     * id = -1 => user not in system
+     * @return list users or empty list if user doesn't register
      */
     @RequestMapping(value = "/active/{id}", method = RequestMethod.GET)
     public List<UserDto> getActiveUsers(@PathVariable long id) {
-        // TODO: Fix one
         List<UserDto> activeUsers = new ArrayList<>();
         if (id == -1){
             return activeUsers;
@@ -35,22 +38,5 @@ public class UserController {
             activeUsers = userService.getAllActiveUsers(id);
             return activeUsers;
         }
-    }
-
-
-    /**
-     * User notification without current companion notifications
-     *
-     * @param ownerId id
-     * @return userDto
-     */
-    @RequestMapping(value = "/notify/owner/{ownerId}", method = RequestMethod.GET)
-    public List<UserDto> userNotifications(@PathVariable long ownerId) {
-        return userService.getUsersIdsByNewMessages(ownerId);
-    }
-
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 }

@@ -33,10 +33,4 @@ public class UserControllerTest {
         verify(userService).getAllActiveUsers(1L);
     }
 
-    @Test
-    public void testGetUserNotifications() {
-        when(userService.getUsersIdsByNewMessages(1L)).thenReturn(new ArrayList<>());
-        userController.userNotifications(1L);
-        verify(userService).getUsersIdsByNewMessages(1L);
-    }
 }

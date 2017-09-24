@@ -45,13 +45,6 @@ public class UserServiceTest {
         Assert.assertFalse(updatedUser.isActive());
     }
 
-    @Test
-    public void getUsersIdsByNewMessagesTest() {
-        List<UserDto> userDtos = userService.getUsersIdsByNewMessages(2L);
-        Assert.assertTrue(userDtos.size() == 0);
-    }
-
-
     @After
     public void after() {
         userRepository.delete(user);

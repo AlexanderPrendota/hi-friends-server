@@ -15,5 +15,4 @@ public interface MessageService {
 
     List<MessageDto> findByChat(Chat id);
 
-    MessageDto getMessageById(long id);
 }

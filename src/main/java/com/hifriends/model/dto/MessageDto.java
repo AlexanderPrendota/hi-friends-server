@@ -11,6 +11,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class MessageDto {
+    long id;
     private String text;
     private String senderName;
     private String senderImagePath;

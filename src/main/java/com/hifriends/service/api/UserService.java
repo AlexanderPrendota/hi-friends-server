@@ -14,5 +14,4 @@ public interface UserService {
 
     UserDto registrateUser(String name, String email, String avatar);
 
-    List<UserDto> getUsersIdsByNewMessages(long idOwner);
 }

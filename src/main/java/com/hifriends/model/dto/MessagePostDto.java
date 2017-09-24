@@ -15,4 +15,5 @@ public class MessagePostDto {
     private long chatId;
     private String text;
     private Date timeStamp;
+    private long recipientId;
 }

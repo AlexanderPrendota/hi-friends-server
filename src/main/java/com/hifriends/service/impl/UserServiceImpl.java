@@ -8,7 +8,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,8 +19,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-    private static final long TEN_SECONDS = 10000L;
 
     @Autowired
     private UserRepository userRepository;
@@ -72,24 +69,6 @@ public class UserServiceImpl implements UserService {
         }
         userRepository.save(user);
         return convertToDto(user);
-    }
-
-    /**
-     * Chat owner has message notifications.
-     * unlike notification with current companion.
-     * Get notification only for 30 sec.
-     *
-     * @param idOwner chat owner id
-     * @return list of users.
-     */
-    @Override
-    public List<UserDto> getUsersIdsByNewMessages(long idOwner) {
-        Date currentTime = new Date();
-        long time = currentTime.getTime() - UserServiceImpl.TEN_SECONDS;
-        return userRepository.findLastUsersMessage(idOwner, new Date(time))
-                .stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
     }
 
     private UserDto convertToDto(User user) {

@@ -72,16 +72,6 @@ public class MessageServiceImp implements MessageService {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Get Message by id
-     * @param id
-     * @return
-     */
-    @Override
-    public MessageDto getMessageById(long id) {
-        return convertToDto(messageRepository.findOne(id));
-    }
-
     private MessageDto convertToDto(Message message) {
         return modelMapper.map(message, MessageDto.class);
     }
