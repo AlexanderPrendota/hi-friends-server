@@ -1,0 +1,16 @@
+com/hifriends/mock/controllers/ViewControllerTest.class
+com/hifriends/unit/models/DtoTest.class
+com/hifriends/mock/controllers/LoginControllerTest.class
+com/hifriends/auto/SendingMessageTest.class
+com/hifriends/unit/service/UserServiceTest.class
+com/hifriends/mock/controllers/MessageControllerTest.class
+com/hifriends/mock/controllers/UserControllerTest.class
+com/hifriends/HifriendsApplicationTests.class
+com/hifriends/unit/models/ModelsTest.class
+com/hifriends/unit/service/ChatServiceTest.class
+com/hifriends/auto/GoogleFormValidateTest.class
+com/hifriends/mock/service/ChatServiceMockTest.class
+com/hifriends/auto/СurrentUserValidateTest.class
+com/hifriends/mock/service/UserServiceMockTest.class
+com/hifriends/mock/service/MessageServiceMockTest.class
+com/hifriends/unit/dao/RepositoryTest.class
