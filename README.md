@@ -8,7 +8,7 @@ Server for Hi-Friends-client from (https://github.com/AlexandrPrendota/HiFriends
 ```bash
  docker-compose up
 ```
-Chat will be available by this link:
+If you use `hi-server-javascript version`: Chat will be available by this link:
 
 * `http://localhost:3131`
 
@@ -41,9 +41,10 @@ then
  mvn clean install
  java -jar demo-0.0.1-SNAPSHOT.
 ```
-Chat will be available by this link:
+If you use `hi-server-javascript version`: Chat will be available by this link:
 
 * `http://localhost:3131`
 
+`hi-server-javascript version` GUI:
 ![2017-08-30 23 51 48](https://user-images.githubusercontent.com/10503748/29896533-0adf836c-8de6-11e7-891c-c402b385ce2a.png)
 
