@@ -40,10 +40,10 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * Update user status to false
+     * Update user status to false when user logged out
      */
     @Override
-    public void updateUserStatus(long id) {
+    public void updateUserStatusToFalse(long id) {
         User user = userRepository.findOne(id);
         if (user != null) {
             user.setActive(false);
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * Registratite user in systems and set online status
+     * Register user in systems and set online status
      *
      * @param name   name of user
      * @param email  email

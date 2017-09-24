@@ -39,6 +39,6 @@ public class LoginController {
      */
     @RequestMapping(value = "/logout/{id}", method = RequestMethod.GET)
     public void updateUserStatus(@PathVariable long id) {
-        userService.updateUserStatus(id);
+        userService.updateUserStatusToFalse(id);
     }
 }

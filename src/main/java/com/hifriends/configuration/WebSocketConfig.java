@@ -31,10 +31,10 @@ import java.util.List;
 public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
-    public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/queue", "/topic");
-        config.setUserDestinationPrefix("/user");
-        config.setApplicationDestinationPrefixes("/app");
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+        registry.enableSimpleBroker("/queue", "/topic");
+        registry.setUserDestinationPrefix("/user");
+        registry.setApplicationDestinationPrefixes("/app");
     }
 
     @Override

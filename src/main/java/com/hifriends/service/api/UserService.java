@@ -10,7 +10,7 @@ public interface UserService {
 
     List<UserDto> getAllActiveUsers(long id);
 
-    void updateUserStatus(long id);
+    void updateUserStatusToFalse(long id);
 
     UserDto registrateUser(String name, String email, String avatar);
 
